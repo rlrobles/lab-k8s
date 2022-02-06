@@ -1,0 +1,194 @@
+
+#Borrar todos
+kubeadm reset
+sudo apt-get purge kubeadm kubectl kubelet kubernetes-cni kube*
+sudo apt-get autoremove
+sudo rm -fr /etc/kubernetes/; sudo rm -fr ~/.kube/; sudo rm -fr /var/lib/etcd; sudo rm -rf /var/lib/cni/
+sudo iptables -F && sudo iptables -t nat -F && sudo iptables -t mangle -F && sudo iptables -X
+
+
+#Resetear nodos
+kubeadm reset --force
+
+
+#sudo apt-get install -y kubeadm=1.14.1 kubelet=1.14.1 kubectl=1.14.1 kubernetes-cni=0.6.0-00
+#sudo apt-get install -y kubeadm=1.14\* kubectl=1.14\* kubelet=1.14\* kubernetes-cni=0.7\*
+#sudo apt-get install -y kubeadm=1.14\* kubectl=1.14\* kubelet=1.14\* kubernetes-cni=0.7\* --allow-change-held-packages
+sudo kubeadm init --pod-network-cidr=192.168.0.0/16 --kubernetes-version=stable-1.14
+sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab 
+###############################################
+
+#Instalar modulos
+sudo apt-get update
+sudo apt-get install -y apt-transport-https ca-certificates curl
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+sudo add-apt-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+sudo apt-get update
+sudo apt-get install -y kubeadm=1.13.4-00 kubelet=1.13.4-00 kubectl=1.13.4-00 kubernetes-cni=0.6.0-00
+sudo apt-mark hold kubelet kubeadm kubectl
+sudo swapoff -a
+
+
+(Opcional) --apiserver-advertise-address=fd00::101
+#sudo kubeadm init --apiserver-advertise-address=[] --pod-network-cidr=192.168.0.0/16 --kubernetes-version=stable-1.13
+sudo kubeadm init –apiserver-advertise-address 172.17.0.94 –-pod-network-cidr=192.168.0.0/16 --kubernetes-version=stable-1.13
+
+#Crear cluster On Master
+sudo kubeadm init  --pod-network-cidr=192.168.0.0/16 --kubernetes-version=stable-1.13
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+kubectl apply -f https://docs.projectcalico.org/v3.1/getting-started/kubernetes/installation/hosted/rbac-kdd.yaml
+kubectl apply -f https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')
+kubectl get componentstatuses
+kubectl get nodes
+kubectl describe nodes
+
+
+
+https://stackoverflow.com/questions/63243353/kubeadm-join-failed-failed-to-request-cluster-info
+Por lo general, el dial tcp <master-ip>:6443: connect: no route to hosterror: se debe a que las reglas de ingreso del nodo principal bloquean el puerto 6443
+https://discuss.kubernetes.io/t/the-connection-to-the-server-host-6443-was-refused-did-you-specify-the-right-host-or-port/552/26
+
+
+
+Nodo Master
+sudo ufw disable
+sudo firewall-cmd --add-port=6443/tcp --permanent
+sudo firewall-cmd --reload
+sudo firewall-cmd --list-all
+
+Nodo Esclavo
+telnet <<IP_Master_Node>> 22
+curl https://172.17.0.94:6443
+
+
+
+# Creando un nuevo slave (Master)
+systemctl status kubelet
+kubeadm token generate
+kubeadm token create
+kubeadm token create srevek.l6dw68bbn4d1v4ft --print-join-command
+
+
+sudo kubeadm join 192.168.79.128:6443 --token 454l7e.6i4zf4sn8ogks1wx \
+    --discovery-token-ca-cert-hash sha256:8e0daeeb8a5644f529cc3dfc9b7c4297d5107b09c15b652e5a5cfd819a6c766a --ignore-preflight-errors='DirAvailable--etc-kubernetes-manifests,FileAvailable--etc-kubernetes-kubelet.conf,Port-10250,FileAvailable--etc-kubernetes-pki-ca.crt'
+
+
+
+
+
+
+Crear un nuevo token
+
+Master
+systemctl status kubelet
+kubeadm token generate
+kubeadm token create hp9b0k.1g9tqz8vkf78ucwf --print-join-command
+
+
+
+
+
+#ERRORS
+https://serverfault.com/questions/938603/i-tried-to-join-kubernetes-nodes-with-master-but-it-shows-errors-in-all-3-nodes/972786
+https://stackoverflow.com/questions/55767652/kubernetes-master-worker-node-kubeadm-join-issue
+https://github.com/kubernetes/kubeadm/issues/974
+https://stackoverflow.com/questions/55767652/kubernetes-master-worker-node-kubeadm-join-issue
+
+
+
+
+
+
+kubelet Error
+error reading /var/lib/kubelet/pki/kubelet.key, certificate and key must be supplied as a pair
+
+sudo kubeadm reset --skip-headers preflight
+iptables -F && iptables -t nat -F && iptables -t mangle -F && iptables -X
+sudo kubeadm reset cleanup-node
+
+# kubeadm join 10.0.0.77:6443 --token 0e72cy.zhvb54ol7cggl6od --discovery-token-ca-cert-hash sha256:3a79dd47e12755f207dff1c4a36b406fd138642ee3a04c3f7d5e6c1ab33c8ad4
+
+kubectl get nodes
+kubectl get pods --all-namespaces
+
+
+kubectl create deployment nginx --image=nginx
+kubectl scale deployment nginx --replicas=2
+
+kubectl expose deployment nginx --type=ClusterIP --port=80 --target-port=80 --name=web
+
+# Get the Cluster IP of the service
+service_ip=$(kubectl get service web -o jsonpath='{.spec.clusterIP}')
+# Use curl to send an HTTP request to the service
+curl $service_ip
+
+kubectl create namespace management
+
+ls /snapshots
+
+sudo systemctl stop kubelet.service
+
+sudo docker ps | grep etcd | cut -d' ' -f1 | xargs sudo docker rm -f
+
+sudo rm -rf /var/lib/etcd/*
+
+
+ sudo docker run --rm \
+    -v '/snapshots:/snapshots' \
+    -v '/var/lib/etcd:/var/lib/etcd' \
+    -e ETCDCTL_API=3 \
+    'k8s.gcr.io/etcd-amd64:3.1.12' \
+    /bin/sh -c "etcdctl snapshot restore '/snapshots/backup.db' && mv /default.etcd/member /var/lib/etcd"
+
+
+sudo systemctl start kubelet
+kubectl get pods
+service_ip=$(kubectl get service web -o jsonpath='{.spec.clusterIP}')
+curl $service_ip
+
+
+#Actualizando los modulos
+sudo curl -sSL https://dl.k8s.io/release/v1.14.1/bin/linux/amd64/kubeadm -o /usr/bin/kubeadm
+sudo kubeadm upgrade plan v1.14.1
+sudo kubeadm upgrade apply v1.14.1
+kubectl drain $HOSTNAME --ignore-daemonsets
+
+sudo apt-get update
+sudo apt-get upgrade -y --allow-change-held-packages \
+     kubelet=1.14.1-00 kubeadm=1.14.1-00 kubectl=1.14.1-00 kubernetes-cni=0.7.5-00
+
+
+sudo apt-get upgrade -y --allow-change-held-packages \
+>      kubelet=1.14.1-00 kubeadm=1.14.1-00 kubectl=1.14.1-00 kubernetes-cni=0.7.5-00
+
+kubectl uncordon $HOSTNAME
+kubectl get nodes
+
+# Get the worker's name
+worker_name=$(kubectl get nodes | grep \<none\> | cut -d' ' -f1)
+# Drain the worker node
+kubectl drain $worker_name --ignore-daemonsets
+
+
+
+
+sudo apt-get upgrade -y --allow-change-held-packages \
+>      kubelet=1.14.1-00 kubeadm=1.14.1-00 kubectl=1.14.1-00 kubernetes-cni=0.7.5-00
+
+
+
+sudo apt-get update
+sudo apt-get upgrade -y --allow-change-held-packages \
+     kubelet=1.14.1-00 kubeadm=1.14.1-00 kubectl=1.14.1-00 kubernetes-cni=0.7.5-00
+
+sudo kubeadm upgrade node config --kubelet-version v1.14.1
+
+sudo systemctl restart kubelet
+
+kubectl uncordon $worker_name
+
+
+kubectl get nodes

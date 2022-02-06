@@ -1,0 +1,110 @@
+
+
+https://kubernetes.io/docs/tasks/run-application/run-replicated-stateful-application/
+https://kubernetes.io/docs/tasks/administer-cluster/change-default-storage-class/
+https://kubernetes.io/docs/concepts/storage/storage-classes/
+  #https://kubernetes.io/docs/concepts/storage/persistent-volumes/#provisioning
+https://blog.knoldus.com/how-to-deploy-mysql-statefulset-in-kubernetes/
+
+
+Errors
+https://komodor.com/learn/how-to-fix-createcontainerconfigerror-and-createcontainer-errors/
+https://loft.sh/blog/kubernetes-statefulset-examples-and-best-practices/
+
+
+echo 'Cleanning Up'
+kubectl delete statefulset mysql
+kubectl delete storageclass general
+kubectl get pods -l app=mysql
+kubectl delete configmap,service,pvc,storageclass -l app=mysql
+
+echo 'Creating Up'
+kubectl create -f mysql-configmap.yaml
+kubectl create -f mysql-services.yaml
+kubectl create -f mysql-storageclass.yaml
+kubectl create -f mysql-statefulset.yaml
+kubectl describe pv
+kubectl describe pvc
+kubectl get pods -l app=mysql
+kubectl get storageclass
+kubectl get statefulset
+
+
+echo 'Connecting Cluster'
+aws --version
+aws sts get-caller-identity
+aws eks --region us-east-2 update-kubeconfig --name eks-cluster
+kubectl get nodes
+kubectl get ns
+kubectl get pods -n default
+kubectl get svc
+
+
+
+echo 'Creating tables and insert data in database'
+kubectl run mysql-client --image=mysql:5.7 -i -t --rm --restart=Never --\
+  /usr/bin/mysql -h mysql-0.mysql -e "CREATE DATABASE mydb; CREATE TABLE mydb.notes (note VARCHAR(250)); INSERT INTO mydb.notes VALUES ('VALOR TEMPORAL);"
+ 
+echo 'Consulting rows in table notes' 
+kubectl run mysql-client --image=mysql:5.7 -i -t --rm --restart=Never --\
+  /usr/bin/mysql -h mysql-read -e "SELECT * FROM mydb.notes"
+
+echo 'Consulting rows in table notes'   
+kubectl run mysql-client-loop --image=mysql:5.7 -i -t --rm --restart=Never --\
+  bash -ic "while sleep 1; do /usr/bin/mysql -h mysql-read -e 'SELECT @@server_id'; done"
+
+
+kubectl exec -it mysql-0 -- mysql -u root -p
+
+kubectl get pod -o wide
+
+node=$(kubectl get pods --field-selector metadata.name=mysql-2 -o=jsonpath='{.items[0].spec.nodeName}')
+kubectl drain $node --force --delete-local-data --ignore-daemonsets
+kubectl get pod -o wide --watch
+kubectl uncordon $node
+
+kubectl delete pod mysql-2
+kubectl get pod mysql-2 -o wide –watch
+
+kubectl scale --replicas=5 statefulset mysql
+
+kubectl get pods -l app=mysql –watch
+
+kubectl run mysql-client-loop --image=mysql:5.7 -i -t --rm --restart=Never --\
+  bash -ic "while sleep 1; do /usr/bin/mysql -h mysql-read -e 'SELECT @@server_id'; done"
+  
+kubectl run mysql-client --image=mysql:5.7 -i -t --rm --restart=Never --\
+  /usr/bin/mysql -h mysql-4.mysql -e "SELECT * FROM mydb.notes"
+  
+kubectl get services mysql-read
+
+
+
+
+################################################################################
+
+kubectl run mysql-client --image=mysql:5.7 -i --rm --restart=Never --\
+  mysql -h mysql-0.mysql <<EOF
+CREATE DATABASE test;
+CREATE TABLE test.messages (message VARCHAR(250));
+INSERT INTO test.messages VALUES ('hello');
+EOF
+
+
+kubectl get pods -l app=mysql --watch
+
+
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: general
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: gp2
+reclaimPolicy: Retain
+allowVolumeExpansion: true
+mountOptions:
+  - debug
+volumeBindingMode: Immediate
+
+################################################################################

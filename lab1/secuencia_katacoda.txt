@@ -1,0 +1,378 @@
+Your Interactive Bash Terminal.
+
+$ sudo apt-get update
+Get:1 http://security.ubuntu.com/ubuntu focal-security InRelease [114 kB]
+Get:2 http://ppa.launchpad.net/deadsnakes/ppa/ubuntu focal InRelease [18.1 kB]                  
+Hit:3 http://gb.archive.ubuntu.com/ubuntu focal InRelease                                       
+Get:4 http://gb.archive.ubuntu.com/ubuntu focal-updates InRelease [114 kB]                      
+Get:5 https://dl.yarnpkg.com/debian stable InRelease [17.1 kB]                                  
+Get:6 https://download.docker.com/linux/ubuntu bionic InRelease [64.4 kB]                       
+Get:7 https://deb.nodesource.com/node_14.x focal InRelease [4,583 B]                       
+Get:8 http://gb.archive.ubuntu.com/ubuntu focal-backports InRelease [108 kB]               
+Get:9 http://ppa.launchpad.net/deadsnakes/ppa/ubuntu focal/main amd64 Packages [22.4 kB]
+Get:10 http://ppa.launchpad.net/deadsnakes/ppa/ubuntu focal/main i386 Packages [11.6 kB]
+Get:11 http://ppa.launchpad.net/deadsnakes/ppa/ubuntu focal/main Translation-en [5,168 B]
+Get:12 http://security.ubuntu.com/ubuntu focal-security/main amd64 Packages [1,214 kB]
+Get:13 http://security.ubuntu.com/ubuntu focal-security/main i386 Packages [368 kB]
+Get:14 http://security.ubuntu.com/ubuntu focal-security/main Translation-en [214 kB]
+Get:15 http://security.ubuntu.com/ubuntu focal-security/main amd64 c-n-f Metadata [9,136 B]
+Get:16 http://security.ubuntu.com/ubuntu focal-security/restricted i386 Packages [21.7 kB]
+Get:17 http://security.ubuntu.com/ubuntu focal-security/restricted amd64 Packages [737 kB]
+Get:18 http://security.ubuntu.com/ubuntu focal-security/restricted Translation-en [105 kB]
+Get:19 http://security.ubuntu.com/ubuntu focal-security/restricted amd64 c-n-f Metadata [536 B]
+Get:20 http://security.ubuntu.com/ubuntu focal-security/universe i386 Packages [532 kB]
+Get:21 http://security.ubuntu.com/ubuntu focal-security/universe amd64 Packages [676 kB]
+Get:22 http://security.ubuntu.com/ubuntu focal-security/universe Translation-en [115 kB]
+Get:23 http://security.ubuntu.com/ubuntu focal-security/universe amd64 c-n-f Metadata [13.0 kB]
+Get:24 http://security.ubuntu.com/ubuntu focal-security/multiverse i386 Packages [7,180 B]
+Get:25 http://security.ubuntu.com/ubuntu focal-security/multiverse amd64 Packages [20.7 kB]
+Get:26 http://security.ubuntu.com/ubuntu focal-security/multiverse Translation-en [5,196 B]
+Get:27 http://security.ubuntu.com/ubuntu focal-security/multiverse amd64 c-n-f Metadata [536 B]
+Get:28 https://dl.yarnpkg.com/debian stable/main amd64 Packages [10.5 kB]
+Get:29 https://dl.yarnpkg.com/debian stable/main i386 Packages [10.5 kB]
+Get:30 https://dl.yarnpkg.com/debian stable/main all Packages [10.5 kB]
+Get:31 https://deb.nodesource.com/node_14.x focal/main amd64 Packages [773 B]
+Get:32 https://download.docker.com/linux/ubuntu bionic/stable amd64 Packages [22.5 kB]
+Get:33 http://gb.archive.ubuntu.com/ubuntu focal-updates/main amd64 Packages [1,550 kB]
+Get:34 http://gb.archive.ubuntu.com/ubuntu focal-updates/main i386 Packages [598 kB]
+Get:35 http://gb.archive.ubuntu.com/ubuntu focal-updates/main Translation-en [300 kB]
+Get:36 http://gb.archive.ubuntu.com/ubuntu focal-updates/main amd64 c-n-f Metadata [14.7 kB]
+Get:37 http://gb.archive.ubuntu.com/ubuntu focal-updates/restricted amd64 Packages [789 kB]
+Get:38 http://gb.archive.ubuntu.com/ubuntu focal-updates/restricted i386 Packages [23.2 kB]
+Get:39 http://gb.archive.ubuntu.com/ubuntu focal-updates/restricted Translation-en [112 kB]
+Get:40 http://gb.archive.ubuntu.com/ubuntu focal-updates/restricted amd64 c-n-f Metadata [500 B]
+Get:41 http://gb.archive.ubuntu.com/ubuntu focal-updates/universe amd64 Packages [896 kB]
+Get:42 http://gb.archive.ubuntu.com/ubuntu focal-updates/universe i386 Packages [665 kB]
+Get:43 http://gb.archive.ubuntu.com/ubuntu focal-updates/universe Translation-en [197 kB]
+Get:44 http://gb.archive.ubuntu.com/ubuntu focal-updates/universe amd64 c-n-f Metadata [20.0 kB]
+Get:45 http://gb.archive.ubuntu.com/ubuntu focal-updates/multiverse amd64 Packages [23.8 kB]
+Get:46 http://gb.archive.ubuntu.com/ubuntu focal-updates/multiverse i386 Packages [8,480 B]
+Get:47 http://gb.archive.ubuntu.com/ubuntu focal-updates/multiverse Translation-en [7,312 B]
+Get:48 http://gb.archive.ubuntu.com/ubuntu focal-updates/multiverse amd64 c-n-f Metadata [580 B]
+Get:49 http://gb.archive.ubuntu.com/ubuntu focal-backports/main amd64 Packages [42.0 kB]
+Get:50 http://gb.archive.ubuntu.com/ubuntu focal-backports/main i386 Packages [34.5 kB]
+Get:51 http://gb.archive.ubuntu.com/ubuntu focal-backports/main Translation-en [10.0 kB]
+Get:52 http://gb.archive.ubuntu.com/ubuntu focal-backports/main amd64 c-n-f Metadata [864 B]
+Get:53 http://gb.archive.ubuntu.com/ubuntu focal-backports/universe amd64 Packages [20.8 kB]
+Get:54 http://gb.archive.ubuntu.com/ubuntu focal-backports/universe i386 Packages [11.4 kB]
+Get:55 http://gb.archive.ubuntu.com/ubuntu focal-backports/universe Translation-en [14.3 kB]
+Get:56 http://gb.archive.ubuntu.com/ubuntu focal-backports/universe amd64 c-n-f Metadata [692 B]
+Fetched 9,913 kB in 5s (2,010 kB/s)                         
+Reading package lists... Done
+$ sudo apt-get install -y apt-transport-https ca-certificates curl
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+ca-certificates is already the newest version (20210119~20.04.2).
+curl is already the newest version (7.68.0-1ubuntu2.7).
+apt-transport-https is already the newest version (2.0.6).
+The following packages were automatically installed and are no longer required:
+  libc-ares2 libnetplan0 nodejs-doc python3-netifaces
+Use 'sudo apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 103 not upgraded.
+$ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+OK
+$ sudo add-apt-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+Hit:1 http://ppa.launchpad.net/deadsnakes/ppa/ubuntu focal InRelease
+Hit:2 https://download.docker.com/linux/ubuntu bionic InRelease                                 
+Hit:3 https://dl.yarnpkg.com/debian stable InRelease                                            
+Hit:4 http://gb.archive.ubuntu.com/ubuntu focal InRelease                                       
+Hit:5 https://deb.nodesource.com/node_14.x focal InRelease                                      
+Hit:6 http://gb.archive.ubuntu.com/ubuntu focal-updates InRelease                               
+Hit:8 http://gb.archive.ubuntu.com/ubuntu focal-backports InRelease                             
+Hit:9 http://security.ubuntu.com/ubuntu focal-security InRelease           
+Get:7 https://packages.cloud.google.com/apt kubernetes-xenial InRelease [9,383 B]
+Get:10 https://packages.cloud.google.com/apt kubernetes-xenial/main amd64 Packages [53.6 kB]
+Fetched 63.0 kB in 3s (24.7 kB/s)
+Reading package lists... Done
+$ sudo apt-get update
+Hit:1 http://gb.archive.ubuntu.com/ubuntu focal InRelease
+Hit:2 https://download.docker.com/linux/ubuntu bionic InRelease
+Hit:3 http://ppa.launchpad.net/deadsnakes/ppa/ubuntu focal InRelease                            
+Hit:4 https://deb.nodesource.com/node_14.x focal InRelease                                      
+Hit:5 http://gb.archive.ubuntu.com/ubuntu focal-updates InRelease                               
+Hit:6 https://dl.yarnpkg.com/debian stable InRelease                                            
+Hit:7 http://gb.archive.ubuntu.com/ubuntu focal-backports InRelease                             
+Hit:9 http://security.ubuntu.com/ubuntu focal-security InRelease                                
+Get:8 https://packages.cloud.google.com/apt kubernetes-xenial InRelease [9,383 B]
+Fetched 9,383 B in 2s (4,797 B/s)                            
+Reading package lists... Done
+$ sudo apt-get install -y kubeadm=1.13.4-00 kubelet=1.13.4-00 kubectl=1.13.4-00 kubernetes-cni=0.6.0-00
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  libc-ares2 libnetplan0 nodejs-doc python3-netifaces
+Use 'sudo apt autoremove' to remove them.
+The following additional packages will be installed:
+  conntrack cri-tools ebtables ethtool
+Suggested packages:
+  nftables
+The following NEW packages will be installed:
+  conntrack cri-tools ebtables ethtool kubeadm kubectl kubelet kubernetes-cni
+0 upgraded, 8 newly installed, 0 to remove and 103 not upgraded.
+Need to get 51.6 MB of archives.
+After this operation, 266 MB of additional disk space will be used.
+Get:1 http://gb.archive.ubuntu.com/ubuntu focal/main amd64 conntrack amd64 1:1.4.5-2 [30.3 kB]
+Get:2 http://gb.archive.ubuntu.com/ubuntu focal/main amd64 ebtables amd64 2.0.11-3build1 [80.3 kB]
+Get:4 http://gb.archive.ubuntu.com/ubuntu focal/main amd64 ethtool amd64 1:5.4-1 [134 kB]
+Get:3 https://packages.cloud.google.com/apt kubernetes-xenial/main amd64 cri-tools amd64 1.19.0-00 [11.2 MB]
+Get:5 https://packages.cloud.google.com/apt kubernetes-xenial/main amd64 kubernetes-cni amd64 0.6.0-00 [5,910 kB]
+Get:6 https://packages.cloud.google.com/apt kubernetes-xenial/main amd64 kubelet amd64 1.13.4-00 [19.1 MB]
+Get:7 https://packages.cloud.google.com/apt kubernetes-xenial/main amd64 kubectl amd64 1.13.4-00 [7,858 kB]
+Get:8 https://packages.cloud.google.com/apt kubernetes-xenial/main amd64 kubeadm amd64 1.13.4-00 [7,366 kB]
+Fetched 51.6 MB in 3s (16.9 MB/s)
+Selecting previously unselected package conntrack.
+(Reading database ... 152227 files and directories currently installed.)
+Preparing to unpack .../0-conntrack_1%3a1.4.5-2_amd64.deb ...
+Unpacking conntrack (1:1.4.5-2) ...
+Selecting previously unselected package cri-tools.
+Preparing to unpack .../1-cri-tools_1.19.0-00_amd64.deb ...
+Unpacking cri-tools (1.19.0-00) ...
+Selecting previously unselected package ebtables.
+Preparing to unpack .../2-ebtables_2.0.11-3build1_amd64.deb ...
+Unpacking ebtables (2.0.11-3build1) ...
+Selecting previously unselected package ethtool.
+Preparing to unpack .../3-ethtool_1%3a5.4-1_amd64.deb ...
+Unpacking ethtool (1:5.4-1) ...
+Selecting previously unselected package kubernetes-cni.
+Preparing to unpack .../4-kubernetes-cni_0.6.0-00_amd64.deb ...
+Unpacking kubernetes-cni (0.6.0-00) ...
+Selecting previously unselected package kubelet.
+Preparing to unpack .../5-kubelet_1.13.4-00_amd64.deb ...
+Unpacking kubelet (1.13.4-00) ...
+Selecting previously unselected package kubectl.
+Preparing to unpack .../6-kubectl_1.13.4-00_amd64.deb ...
+Unpacking kubectl (1.13.4-00) ...
+Selecting previously unselected package kubeadm.
+Preparing to unpack .../7-kubeadm_1.13.4-00_amd64.deb ...
+Unpacking kubeadm (1.13.4-00) ...
+Setting up conntrack (1:1.4.5-2) ...
+Setting up kubectl (1.13.4-00) ...
+Setting up ebtables (2.0.11-3build1) ...
+Setting up cri-tools (1.19.0-00) ...
+Setting up kubernetes-cni (0.6.0-00) ...
+Setting up ethtool (1:5.4-1) ...
+Setting up kubelet (1.13.4-00) ...
+Created symlink /etc/systemd/system/multi-user.target.wants/kubelet.service → /lib/systemd/system/kubelet.service.
+Setting up kubeadm (1.13.4-00) ...
+Processing triggers for man-db (2.9.1-1) ...
+$ sudo apt-mark hold kubelet kubeadm kubectl
+kubelet set on hold.
+kubeadm set on hold.
+kubectl set on hold.
+$ sudo swapoff -a
+$ ifconfig
+docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 172.18.0.1  netmask 255.255.255.0  broadcast 172.18.0.255
+        ether 02:42:50:7e:a6:3e  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+ens3: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.94  netmask 255.255.0.0  broadcast 172.17.255.255
+        inet6 fe80::42:acff:fe11:5e  prefixlen 64  scopeid 0x20<link>
+        ether 02:42:ac:11:00:5e  txqueuelen 1000  (Ethernet)
+        RX packets 45064  bytes 64783647 (64.7 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 3850  bytes 440173 (440.1 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 198  bytes 20424 (20.4 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 198  bytes 20424 (20.4 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+$ sudo ufw disable
+Firewall stopped and disabled on system startup
+$ sudo kubeadm init –apiserver-advertise-address 172.17.0.94 –-pod-network-cidr=192.168.0.0/16 --kubernetes-version=stable-1.13
+[init] Using Kubernetes version: v1.13.12
+[preflight] Running pre-flight checks
+        [WARNING SystemVerification]: this Docker version is not on the list of validated versions: 20.10.9. Latest validated version: 18.06
+[preflight] Pulling images required for setting up a Kubernetes cluster
+[preflight] This might take a minute or two, depending on the speed of your internet connection
+[preflight] You can also perform this action in beforehand using 'kubeadm config images pull'
+[kubelet-start] Writing kubelet environment file with flags to file "/var/lib/kubelet/kubeadm-flags.env"
+[kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/config.yaml"
+[kubelet-start] Activating the kubelet service
+[certs] Using certificateDir folder "/etc/kubernetes/pki"
+[certs] Generating "front-proxy-ca" certificate and key
+[certs] Generating "front-proxy-client" certificate and key
+[certs] Generating "etcd/ca" certificate and key
+[certs] Generating "etcd/healthcheck-client" certificate and key
+[certs] Generating "etcd/server" certificate and key
+[certs] etcd/server serving cert is signed for DNS names [host01 localhost] and IPs [172.17.0.94 127.0.0.1 ::1]
+[certs] Generating "etcd/peer" certificate and key
+[certs] etcd/peer serving cert is signed for DNS names [host01 localhost] and IPs [172.17.0.94 127.0.0.1 ::1]
+[certs] Generating "apiserver-etcd-client" certificate and key
+[certs] Generating "ca" certificate and key
+[certs] Generating "apiserver" certificate and key
+[certs] apiserver serving cert is signed for DNS names [host01 kubernetes kubernetes.default kubernetes.default.svc kubernetes.default.svc.cluster.local] and IPs [10.96.0.1 172.17.0.94]
+[certs] Generating "apiserver-kubelet-client" certificate and key
+[certs] Generating "sa" key and public key
+[kubeconfig] Using kubeconfig folder "/etc/kubernetes"
+[kubeconfig] Writing "admin.conf" kubeconfig file
+[kubeconfig] Writing "kubelet.conf" kubeconfig file
+[kubeconfig] Writing "controller-manager.conf" kubeconfig file
+[kubeconfig] Writing "scheduler.conf" kubeconfig file
+[control-plane] Using manifest folder "/etc/kubernetes/manifests"
+[control-plane] Creating static Pod manifest for "kube-apiserver"
+[control-plane] Creating static Pod manifest for "kube-controller-manager"
+[control-plane] Creating static Pod manifest for "kube-scheduler"
+[etcd] Creating static Pod manifest for local etcd in "/etc/kubernetes/manifests"
+[wait-control-plane] Waiting for the kubelet to boot up the control plane as static Pods from directory "/etc/kubernetes/manifests". This can take up to 4m0s
+[kubelet-check] Initial timeout of 40s passed.
+[apiclient] All control plane components are healthy after 44.510617 seconds
+[uploadconfig] storing the configuration used in ConfigMap "kubeadm-config" in the "kube-system" Namespace
+[kubelet] Creating a ConfigMap "kubelet-config-1.13" in namespace kube-system with the configuration for the kubelets in the cluster
+[patchnode] Uploading the CRI Socket information "/var/run/dockershim.sock" to the Node API object "host01" as an annotation
+[mark-control-plane] Marking the node host01 as control-plane by adding the label "node-role.kubernetes.io/master=''"
+[mark-control-plane] Marking the node host01 as control-plane by adding the taints [node-role.kubernetes.io/master:NoSchedule]
+[bootstrap-token] Using token: bz0vbg.vv19w3xrujiuenuq
+[bootstrap-token] Configuring bootstrap tokens, cluster-info ConfigMap, RBAC Roles
+[bootstraptoken] configured RBAC rules to allow Node Bootstrap tokens to post CSRs in order for nodes to get long term certificate credentials
+[bootstraptoken] configured RBAC rules to allow the csrapprover controller automatically approve CSRs from a Node Bootstrap Token
+[bootstraptoken] configured RBAC rules to allow certificate rotation for all node client certificates in the cluster
+[bootstraptoken] creating the "cluster-info" ConfigMap in the "kube-public" namespace
+[addons] Applied essential addon: CoreDNS
+[addons] Applied essential addon: kube-proxy
+
+Your Kubernetes master has initialized successfully!
+
+To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+You can now join any number of machines by running the following on each node
+as root:
+
+  kubeadm join 172.17.0.94:6443 --token bz0vbg.vv19w3xrujiuenuq --discovery-token-ca-cert-hash sha256:81d8aab2d890b8cb2ed20ac05fd9cee67828423311dc68b47c7f15d091638d91
+
+$ mkdir -p $HOME/.kube
+$ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+$ sudo chown $(id -u):$(id -g) $HOME/.kube/config
+$ kubectl apply -f https://docs.projectcalico.org/v3.1/getting-started/kubernetes/installation/hosted/rbac-kdd.yaml
+clusterrole.rbac.authorization.k8s.io/calico-node created
+clusterrolebinding.rbac.authorization.k8s.io/calico-node created
+$ kubectl apply -f https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')
+serviceaccount/weave-net created
+clusterrole.rbac.authorization.k8s.io/weave-net created
+clusterrolebinding.rbac.authorization.k8s.io/weave-net created
+role.rbac.authorization.k8s.io/weave-net created
+rolebinding.rbac.authorization.k8s.io/weave-net created
+daemonset.apps/weave-net created
+$ kubectl get componentstatuses
+NAME                 STATUS    MESSAGE              ERROR
+controller-manager   Healthy   ok                   
+scheduler            Healthy   ok                   
+etcd-0               Healthy   {"health": "true"}   
+$ kubectl get nodes
+NAME     STATUS     ROLES    AGE     VERSION
+host01   NotReady   master   2m24s   v1.13.4
+$ kubectl describe nodes
+Name:               host01
+Roles:              master
+Labels:             beta.kubernetes.io/arch=amd64
+                    beta.kubernetes.io/os=linux
+                    kubernetes.io/hostname=host01
+                    node-role.kubernetes.io/master=
+Annotations:        kubeadm.alpha.kubernetes.io/cri-socket: /var/run/dockershim.sock
+                    node.alpha.kubernetes.io/ttl: 0
+                    volumes.kubernetes.io/controller-managed-attach-detach: true
+CreationTimestamp:  Sun, 06 Feb 2022 23:20:19 +0000
+Taints:             node-role.kubernetes.io/master:NoSchedule
+                    node.kubernetes.io/not-ready:NoSchedule
+Unschedulable:      false
+Conditions:
+  Type             Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+  ----             ------  -----------------                 ------------------                ------                       -------
+  MemoryPressure   False   Sun, 06 Feb 2022 23:22:42 +0000   Sun, 06 Feb 2022 23:20:17 +0000   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure     False   Sun, 06 Feb 2022 23:22:42 +0000   Sun, 06 Feb 2022 23:20:17 +0000   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure      False   Sun, 06 Feb 2022 23:22:42 +0000   Sun, 06 Feb 2022 23:20:17 +0000   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready            False   Sun, 06 Feb 2022 23:22:42 +0000   Sun, 06 Feb 2022 23:20:17 +0000   KubeletNotReady              runtime network not ready: NetworkReady=false reason:NetworkPluginNotReady message:docker: network plugin is not ready: cni config uninitialized
+Addresses:
+  InternalIP:  172.17.0.94
+  Hostname:    host01
+Capacity:
+ cpu:                2
+ ephemeral-storage:  48626364Ki
+ hugepages-1Gi:      0
+ hugepages-2Mi:      0
+ memory:             1519020Ki
+ pods:               110
+Allocatable:
+ cpu:                2
+ ephemeral-storage:  44814056989
+ hugepages-1Gi:      0
+ hugepages-2Mi:      0
+ memory:             1416620Ki
+ pods:               110
+System Info:
+ Machine ID:                 
+ System UUID:                
+ Boot ID:                    b00ea65e-e04b-4e9c-8ad8-f428c1296d84
+ Kernel Version:             5.4.0-88-generic
+ OS Image:                   Ubuntu 20.04.3 LTS
+ Operating System:           linux
+ Architecture:               amd64
+ Container Runtime Version:  docker://20.10.9
+ Kubelet Version:            v1.13.4
+ Kube-Proxy Version:         v1.13.4
+Non-terminated Pods:         (6 in total)
+  Namespace                  Name                              CPU Requests  CPU Limits  Memory Requests  Memory Limits  AGE
+  ---------                  ----                              ------------  ----------  ---------------  -------------  ---
+  kube-system                etcd-host01                       0 (0%)        0 (0%)      0 (0%)           0 (0%)         104s
+  kube-system                kube-apiserver-host01             250m (12%)    0 (0%)      0 (0%)           0 (0%)         80s
+  kube-system                kube-controller-manager-host01    200m (10%)    0 (0%)      0 (0%)           0 (0%)         104s
+  kube-system                kube-proxy-j8cp8                  0 (0%)        0 (0%)      0 (0%)           0 (0%)         2m11s
+  kube-system                kube-scheduler-host01             100m (5%)     0 (0%)      0 (0%)           0 (0%)         80s
+  kube-system                weave-net-srwnz                   100m (5%)     0 (0%)      200Mi (14%)      0 (0%)         15s
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource           Requests     Limits
+  --------           --------     ------
+  cpu                650m (32%)   0 (0%)
+  memory             200Mi (14%)  0 (0%)
+  ephemeral-storage  0 (0%)       0 (0%)
+Events:
+  Type    Reason                   Age                    From                Message
+  ----    ------                   ----                   ----                -------
+  Normal  Starting                 3m                     kubelet, host01     Starting kubelet.
+  Normal  NodeAllocatableEnforced  2m59s                  kubelet, host01     Updated Node Allocatable limit across pods
+  Normal  NodeHasSufficientMemory  2m58s (x8 over 2m59s)  kubelet, host01     Node host01 status is now: NodeHasSufficientMemory
+  Normal  NodeHasNoDiskPressure    2m58s (x8 over 2m59s)  kubelet, host01     Node host01 status is now: NodeHasNoDiskPressure
+  Normal  NodeHasSufficientPID     2m58s (x7 over 2m59s)  kubelet, host01     Node host01 status is now: NodeHasSufficientPID
+  Normal  Starting                 2m7s                   kube-proxy, host01  Starting kube-proxy.
+$ kubectl get nodes
+NAME     STATUS     ROLES    AGE     VERSION
+host01   NotReady   master   2m28s   v1.13.4
+$ kubectl get nodes
+NAME     STATUS     ROLES    AGE     VERSION
+host01   NotReady   master   2m29s   v1.13.4
+$ kubectl get nodes
+NAME     STATUS     ROLES    AGE     VERSION
+host01   NotReady   master   2m30s   v1.13.4
+$ kubectl get nodes
+NAME     STATUS     ROLES    AGE     VERSION
+host01   NotReady   master   2m31s   v1.13.4
+$ kubectl get nodes
+NAME     STATUS     ROLES    AGE     VERSION
+host01   NotReady   master   2m32s   v1.13.4
+$ kubectl get nodes
+NAME     STATUS     ROLES    AGE     VERSION
+host01   NotReady   master   2m33s   v1.13.4
+$ kubectl get nodes
+NAME     STATUS   ROLES    AGE     VERSION
+host01   Ready    master   2m33s   v1.13.4

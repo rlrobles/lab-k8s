@@ -1,0 +1,399 @@
+Your Interactive Bash Terminal.
+
+$ sudo apt-get update
+Hit:1 http://gb.archive.ubuntu.com/ubuntu focal InRelease
+Get:2 http://gb.archive.ubuntu.com/ubuntu focal-updates InRelease [114 kB]                      
+Get:3 http://ppa.launchpad.net/deadsnakes/ppa/ubuntu focal InRelease [18.1 kB]                  
+Get:4 https://deb.nodesource.com/node_14.x focal InRelease [4,583 B]                            
+Get:5 https://dl.yarnpkg.com/debian stable InRelease [17.1 kB]                                  
+Get:6 https://download.docker.com/linux/ubuntu bionic InRelease [64.4 kB]                       
+Get:7 http://gb.archive.ubuntu.com/ubuntu focal-backports InRelease [108 kB]                    
+Get:8 http://security.ubuntu.com/ubuntu focal-security InRelease [114 kB]
+Get:9 http://ppa.launchpad.net/deadsnakes/ppa/ubuntu focal/main i386 Packages [11.6 kB]
+Get:10 http://ppa.launchpad.net/deadsnakes/ppa/ubuntu focal/main amd64 Packages [22.4 kB]
+Get:11 https://deb.nodesource.com/node_14.x focal/main amd64 Packages [773 B]
+Get:12 http://ppa.launchpad.net/deadsnakes/ppa/ubuntu focal/main Translation-en [5,168 B]
+Get:13 https://dl.yarnpkg.com/debian stable/main all Packages [10.5 kB]
+Get:14 https://dl.yarnpkg.com/debian stable/main i386 Packages [10.5 kB]
+Get:15 https://dl.yarnpkg.com/debian stable/main amd64 Packages [10.5 kB]
+Get:16 https://download.docker.com/linux/ubuntu bionic/stable amd64 Packages [22.5 kB]
+Get:17 http://gb.archive.ubuntu.com/ubuntu focal-updates/main i386 Packages [598 kB]
+Get:18 http://gb.archive.ubuntu.com/ubuntu focal-updates/main amd64 Packages [1,550 kB]
+Get:19 http://gb.archive.ubuntu.com/ubuntu focal-updates/main Translation-en [300 kB]
+Get:20 http://gb.archive.ubuntu.com/ubuntu focal-updates/main amd64 c-n-f Metadata [14.7 kB]
+Get:21 http://gb.archive.ubuntu.com/ubuntu focal-updates/restricted i386 Packages [23.2 kB]
+Get:22 http://gb.archive.ubuntu.com/ubuntu focal-updates/restricted amd64 Packages [789 kB]
+Get:23 http://gb.archive.ubuntu.com/ubuntu focal-updates/restricted Translation-en [112 kB]
+Get:24 http://gb.archive.ubuntu.com/ubuntu focal-updates/restricted amd64 c-n-f Metadata [500 B]
+Get:25 http://gb.archive.ubuntu.com/ubuntu focal-updates/universe amd64 Packages [896 kB]
+Get:26 http://gb.archive.ubuntu.com/ubuntu focal-updates/universe i386 Packages [665 kB]
+Get:27 http://gb.archive.ubuntu.com/ubuntu focal-updates/universe Translation-en [197 kB]
+Get:28 http://gb.archive.ubuntu.com/ubuntu focal-updates/universe amd64 c-n-f Metadata [20.0 kB]
+Get:29 http://gb.archive.ubuntu.com/ubuntu focal-updates/multiverse i386 Packages [8,480 B]
+Get:30 http://gb.archive.ubuntu.com/ubuntu focal-updates/multiverse amd64 Packages [23.8 kB]
+Get:31 http://gb.archive.ubuntu.com/ubuntu focal-updates/multiverse Translation-en [7,312 B]
+Get:32 http://gb.archive.ubuntu.com/ubuntu focal-updates/multiverse amd64 c-n-f Metadata [580 B]
+Get:33 http://gb.archive.ubuntu.com/ubuntu focal-backports/main amd64 Packages [42.0 kB]
+Get:34 http://gb.archive.ubuntu.com/ubuntu focal-backports/main i386 Packages [34.5 kB]
+Get:35 http://gb.archive.ubuntu.com/ubuntu focal-backports/main Translation-en [10.0 kB]
+Get:36 http://gb.archive.ubuntu.com/ubuntu focal-backports/main amd64 c-n-f Metadata [864 B]
+Get:37 http://gb.archive.ubuntu.com/ubuntu focal-backports/universe i386 Packages [11.4 kB]
+Get:38 http://gb.archive.ubuntu.com/ubuntu focal-backports/universe amd64 Packages [20.8 kB]
+Get:39 http://gb.archive.ubuntu.com/ubuntu focal-backports/universe Translation-en [14.3 kB]
+Get:40 http://gb.archive.ubuntu.com/ubuntu focal-backports/universe amd64 c-n-f Metadata [692 B]
+Get:41 http://security.ubuntu.com/ubuntu focal-security/main amd64 Packages [1,214 kB]
+Get:42 http://security.ubuntu.com/ubuntu focal-security/main i386 Packages [368 kB]
+Get:43 http://security.ubuntu.com/ubuntu focal-security/main Translation-en [214 kB]
+Get:44 http://security.ubuntu.com/ubuntu focal-security/main amd64 c-n-f Metadata [9,136 B]
+Get:45 http://security.ubuntu.com/ubuntu focal-security/restricted i386 Packages [20.5 kB]
+Get:46 http://security.ubuntu.com/ubuntu focal-security/restricted amd64 Packages [722 kB]
+Get:47 http://security.ubuntu.com/ubuntu focal-security/restricted Translation-en [103 kB]
+Get:48 http://security.ubuntu.com/ubuntu focal-security/restricted amd64 c-n-f Metadata [536 B]
+Get:49 http://security.ubuntu.com/ubuntu focal-security/universe amd64 Packages [676 kB]
+Get:50 http://security.ubuntu.com/ubuntu focal-security/universe i386 Packages [532 kB]
+Get:51 http://security.ubuntu.com/ubuntu focal-security/universe Translation-en [115 kB]
+Get:52 http://security.ubuntu.com/ubuntu focal-security/universe amd64 c-n-f Metadata [13.0 kB]
+Get:53 http://security.ubuntu.com/ubuntu focal-security/multiverse amd64 Packages [21.8 kB]
+Get:54 http://security.ubuntu.com/ubuntu focal-security/multiverse i386 Packages [7,176 B]
+Get:55 http://security.ubuntu.com/ubuntu focal-security/multiverse amd64 c-n-f Metadata [536 B]
+Fetched 9,891 kB in 4s (2,240 kB/s)                         
+Reading package lists... Done
+$ sudo apt-get install -y apt-transport-https ca-certificates curl
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+ca-certificates is already the newest version (20210119~20.04.2).
+curl is already the newest version (7.68.0-1ubuntu2.7).
+apt-transport-https is already the newest version (2.0.6).
+The following packages were automatically installed and are no longer required:
+  libc-ares2 libnetplan0 nodejs-doc python3-netifaces
+Use 'sudo apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 103 not upgraded.
+$ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+OK
+$ sudo add-apt-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+Get:1 http://security.ubuntu.com/ubuntu focal-security InRelease [114 kB]
+Hit:2 http://ppa.launchpad.net/deadsnakes/ppa/ubuntu focal InRelease
+Hit:3 http://gb.archive.ubuntu.com/ubuntu focal InRelease                                       
+Hit:4 https://download.docker.com/linux/ubuntu bionic InRelease                                 
+Hit:5 https://dl.yarnpkg.com/debian stable InRelease                                            
+Hit:6 http://gb.archive.ubuntu.com/ubuntu focal-updates InRelease                               
+Hit:7 http://gb.archive.ubuntu.com/ubuntu focal-backports InRelease                             
+Hit:8 https://deb.nodesource.com/node_14.x focal InRelease          
+Get:9 https://packages.cloud.google.com/apt kubernetes-xenial InRelease [9,383 B]
+Get:10 http://security.ubuntu.com/ubuntu focal-security/main amd64 Packages [1,214 kB]
+Get:11 http://security.ubuntu.com/ubuntu focal-security/main i386 Packages [368 kB]
+Get:12 http://security.ubuntu.com/ubuntu focal-security/main Translation-en [214 kB]
+Get:13 http://security.ubuntu.com/ubuntu focal-security/main amd64 c-n-f Metadata [9,136 B]
+Get:14 http://security.ubuntu.com/ubuntu focal-security/restricted i386 Packages [21.7 kB]
+Get:15 http://security.ubuntu.com/ubuntu focal-security/restricted amd64 Packages [737 kB]
+Get:16 http://security.ubuntu.com/ubuntu focal-security/restricted Translation-en [105 kB]
+Get:17 http://security.ubuntu.com/ubuntu focal-security/multiverse amd64 Packages [20.7 kB]
+Get:18 http://security.ubuntu.com/ubuntu focal-security/multiverse i386 Packages [7,180 B]
+Get:19 http://security.ubuntu.com/ubuntu focal-security/multiverse Translation-en [5,196 B]
+Get:20 https://packages.cloud.google.com/apt kubernetes-xenial/main amd64 Packages [53.6 kB]
+Fetched 2,879 kB in 3s (1,079 kB/s)                          
+Reading package lists... Done
+$ sudo apt-get update
+Hit:1 http://ppa.launchpad.net/deadsnakes/ppa/ubuntu focal InRelease
+Hit:2 http://gb.archive.ubuntu.com/ubuntu focal InRelease                                       
+Hit:3 http://gb.archive.ubuntu.com/ubuntu focal-updates InRelease                               
+Hit:4 http://gb.archive.ubuntu.com/ubuntu focal-backports InRelease                             
+Hit:5 http://security.ubuntu.com/ubuntu focal-security InRelease                                
+Hit:6 https://dl.yarnpkg.com/debian stable InRelease                                            
+Hit:7 https://download.docker.com/linux/ubuntu bionic InRelease                                 
+Hit:8 https://deb.nodesource.com/node_14.x focal InRelease                                    
+Hit:9 https://packages.cloud.google.com/apt kubernetes-xenial InRelease 
+Reading package lists... Done
+$ sudo apt-get install -y kubeadm=1.13.4-00 kubelet=1.13.4-00 kubectl=1.13.4-00 kubernetes-cni=0.6.0-00
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  libc-ares2 libnetplan0 nodejs-doc python3-netifaces
+Use 'sudo apt autoremove' to remove them.
+The following additional packages will be installed:
+  conntrack cri-tools ebtables ethtool
+Suggested packages:
+  nftables
+The following NEW packages will be installed:
+  conntrack cri-tools ebtables ethtool kubeadm kubectl kubelet kubernetes-cni
+0 upgraded, 8 newly installed, 0 to remove and 103 not upgraded.
+Need to get 51.6 MB of archives.
+After this operation, 266 MB of additional disk space will be used.
+Get:1 https://packages.cloud.google.com/apt kubernetes-xenial/main amd64 cri-tools amd64 1.19.0-00 [11.2 MB]
+Get:2 https://packages.cloud.google.com/apt kubernetes-xenial/main amd64 kubernetes-cni amd64 0.6.0-00 [5,910 kB]
+Get:6 http://gb.archive.ubuntu.com/ubuntu focal/main amd64 conntrack amd64 1:1.4.5-2 [30.3 kB] 
+Get:7 http://gb.archive.ubuntu.com/ubuntu focal/main amd64 ebtables amd64 2.0.11-3build1 [80.3 kB]
+Get:8 http://gb.archive.ubuntu.com/ubuntu focal/main amd64 ethtool amd64 1:5.4-1 [134 kB]
+Get:3 https://packages.cloud.google.com/apt kubernetes-xenial/main amd64 kubelet amd64 1.13.4-00 [19.1 MB]
+Get:4 https://packages.cloud.google.com/apt kubernetes-xenial/main amd64 kubectl amd64 1.13.4-00 [7,858 kB]
+Get:5 https://packages.cloud.google.com/apt kubernetes-xenial/main amd64 kubeadm amd64 1.13.4-00 [7,366 kB]
+Fetched 51.6 MB in 3s (19.1 MB/s)
+Selecting previously unselected package conntrack.
+(Reading database ... 152227 files and directories currently installed.)
+Preparing to unpack .../0-conntrack_1%3a1.4.5-2_amd64.deb ...
+Unpacking conntrack (1:1.4.5-2) ...
+Selecting previously unselected package cri-tools.
+Preparing to unpack .../1-cri-tools_1.19.0-00_amd64.deb ...
+Unpacking cri-tools (1.19.0-00) ...
+Selecting previously unselected package ebtables.
+Preparing to unpack .../2-ebtables_2.0.11-3build1_amd64.deb ...
+Unpacking ebtables (2.0.11-3build1) ...
+Selecting previously unselected package ethtool.
+Preparing to unpack .../3-ethtool_1%3a5.4-1_amd64.deb ...
+Unpacking ethtool (1:5.4-1) ...
+Selecting previously unselected package kubernetes-cni.
+Preparing to unpack .../4-kubernetes-cni_0.6.0-00_amd64.deb ...
+Unpacking kubernetes-cni (0.6.0-00) ...
+Selecting previously unselected package kubelet.
+Preparing to unpack .../5-kubelet_1.13.4-00_amd64.deb ...
+Unpacking kubelet (1.13.4-00) ...
+Selecting previously unselected package kubectl.
+Preparing to unpack .../6-kubectl_1.13.4-00_amd64.deb ...
+Unpacking kubectl (1.13.4-00) ...
+Selecting previously unselected package kubeadm.
+Preparing to unpack .../7-kubeadm_1.13.4-00_amd64.deb ...
+Unpacking kubeadm (1.13.4-00) ...
+Setting up conntrack (1:1.4.5-2) ...
+Setting up kubectl (1.13.4-00) ...
+Setting up ebtables (2.0.11-3build1) ...
+Setting up cri-tools (1.19.0-00) ...
+Setting up kubernetes-cni (0.6.0-00) ...
+Setting up ethtool (1:5.4-1) ...
+Setting up kubelet (1.13.4-00) ...
+Created symlink /etc/systemd/system/multi-user.target.wants/kubelet.service → /lib/systemd/system/kubelet.service.
+Setting up kubeadm (1.13.4-00) ...
+Processing triggers for man-db (2.9.1-1) ...
+$ sudo apt-mark hold kubelet kubeadm kubectl
+kubelet set on hold.
+kubeadm set on hold.
+kubectl set on hold.
+$ sudo swapoff -a
+$ docker
+
+Usage:  docker [OPTIONS] COMMAND
+
+A self-sufficient runtime for containers
+
+Options:
+      --config string      Location of client config files (default "/root/.docker")
+  -c, --context string     Name of the context to use to connect to the daemon (overrides
+                           DOCKER_HOST env var and default context set with "docker
+                           context use")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket(s) to connect to
+  -l, --log-level string   Set the logging level ("debug"|"info"|"warn"|"error"|"fatal")
+                           (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default "/root/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default "/root/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default "/root/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Management Commands:
+  app*        Docker App (Docker Inc., v0.9.1-beta3)
+  builder     Manage builds
+  buildx*     Build with BuildKit (Docker Inc., v0.6.3-docker)
+  config      Manage Docker configs
+  container   Manage containers
+  context     Manage contexts
+  image       Manage images
+  manifest    Manage Docker image manifests and manifest lists
+  network     Manage networks
+  node        Manage Swarm nodes
+  plugin      Manage plugins
+  scan*       Docker Scan (Docker Inc., v0.8.0)
+  secret      Manage Docker secrets
+  service     Manage services
+  stack       Manage Docker stacks
+  swarm       Manage Swarm
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  build       Build an image from a Dockerfile
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  exec        Run a command in a running container
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  images      List images
+  import      Import the contents from a tarball to create a filesystem image
+  info        Display system-wide information
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  login       Log in to a Docker registry
+  logout      Log out from a Docker registry
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  ps          List containers
+  pull        Pull an image or a repository from a registry
+  push        Push an image or a repository to a registry
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  run         Run a command in a new container
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  search      Search the Docker Hub for images
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  version     Show the Docker version information
+  wait        Block until one or more containers stop, then print their exit codes
+
+Run 'docker COMMAND --help' for more information on a command.
+
+To get more help with docker, check out our guides at https://docs.docker.com/go/guides/
+$ docker version
+Client: Docker Engine - Community
+ Version:           20.10.9
+ API version:       1.41
+ Go version:        go1.16.8
+ Git commit:        c2ea9bc
+ Built:             Mon Oct  4 16:08:29 2021
+ OS/Arch:           linux/amd64
+ Context:           default
+ Experimental:      true
+
+Server: Docker Engine - Community
+ Engine:
+  Version:          20.10.9
+  API version:      1.41 (minimum version 1.12)
+  Go version:       go1.16.8
+  Git commit:       79ea9d3
+  Built:            Mon Oct  4 16:06:34 2021
+  OS/Arch:          linux/amd64
+  Experimental:     false
+ containerd:
+  Version:          1.4.11
+  GitCommit:        5b46e404f6b9f661a205e28d59c982d3634148f8
+ runc:
+  Version:          1.0.2
+  GitCommit:        v1.0.2-0-g52b36a2
+ docker-init:
+  Version:          0.19.0
+  GitCommit:        de40ad0
+$ sudo kubeadm join 172.17.0.94:6443 --token bz0vbg.vv19w3xrujiuenuq --discovery-token-ca-cert-hash sha256:81d8aab2d890b8cb2ed20ac05fd9cee67828423311dc68b47c7f15d091638d91^C
+$ ^C
+$ telnet 192.17.0.94 6443
+Trying 192.17.0.94...
+^C
+$ telnet 172.17.0.94 6443
+Trying 172.17.0.94...
+Connected to 172.17.0.94.
+Escape character is '^]'.
+^CConnection closed by foreign host.
+$ telnet 172.17.0.94 6443
+Trying 172.17.0.94...
+Connected to 172.17.0.94.
+Escape character is '^]'.
+^CConnection closed by foreign host.
+$ curl https://172.17.0.94:6443
+curl: (60) SSL certificate problem: unable to get local issuer certificate
+More details here: https://curl.haxx.se/docs/sslcerts.html
+
+curl failed to verify the legitimacy of the server and therefore could not
+establish a secure connection to it. To learn more about this situation and
+how to fix it, please visit the web page mentioned above.
+$ sudo kubeadm join 172.17.0.94:6443 --token bz0vbg.vv19w3xrujiuenuq --discovery-token-ca-cert-hash sha256:81d8aab2d890b8cb2ed20ac05fd9cee67828423311dc68b47c7f15d091638d91
+[preflight] Running pre-flight checks
+        [WARNING SystemVerification]: this Docker version is not on the list of validated versions: 20.10.9. Latest validated version: 18.06
+[discovery] Trying to connect to API Server "172.17.0.94:6443"
+[discovery] Created cluster-info discovery client, requesting info from "https://172.17.0.94:6443"
+[discovery] Requesting info from "https://172.17.0.94:6443" again to validate TLS against the pinned public key
+[discovery] Cluster info signature and contents are valid and TLS certificate validates against pinned roots, will use API Server "172.17.0.94:6443"
+[discovery] Successfully established connection with API Server "172.17.0.94:6443"
+[join] Reading configuration from the cluster...
+[join] FYI: You can look at this config file with 'kubectl -n kube-system get cm kubeadm-config -oyaml'
+[kubelet] Downloading configuration for the kubelet from the "kubelet-config-1.13" ConfigMap in the kube-system namespace
+[kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/config.yaml"
+[kubelet-start] Writing kubelet environment file with flags to file "/var/lib/kubelet/kubeadm-flags.env"
+[kubelet-start] Activating the kubelet service
+[tlsbootstrap] Waiting for the kubelet to perform the TLS Bootstrap...
+[patchnode] Uploading the CRI Socket information "/var/run/dockershim.sock" to the Node API object "host01" as an annotation
+
+This node has joined the cluster:
+* Certificate signing request was sent to apiserver and a response was received.
+* The Kubelet was informed of the new secure connection details.
+
+Run 'kubectl get nodes' on the master to see this node join the cluster.
+
+$ ifconfig
+docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 172.18.0.1  netmask 255.255.255.0  broadcast 172.18.0.255
+        ether 02:42:83:53:3c:a6  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+ens3: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.101  netmask 255.255.0.0  broadcast 172.17.255.255
+        inet6 fe80::42:acff:fe11:65  prefixlen 64  scopeid 0x20<link>
+        ether 02:42:ac:11:00:65  txqueuelen 1000  (Ethernet)
+        RX packets 93609  bytes 133624328 (133.6 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 6740  bytes 913967 (913.9 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 514  bytes 50816 (50.8 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 514  bytes 50816 (50.8 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+$ kubectl get nodes
+The connection to the server localhost:8080 was refused - did you specify the right host or port?
+$ kubeadm join 172.17.0.94:6443 --token srevek.l6dw68bbn4d1v4ft --discovery-token-ca-cert-hash sha256:81d8aab2d890b8cb2ed20ac05fd9cee67828423311dc68b47c7f15d091638d91^C
+$ sudo kubeadm join 172.17.0.94:6443 --token srevek.l6dw68bbn4d1v4ft --discovery-token-ca-cert-hash sha256:81d8aab2d890b8cb2ed20ac05fd9cee67828423311dc68b47c7f15d091638d91
+[preflight] Running pre-flight checks
+        [WARNING SystemVerification]: this Docker version is not on the list of validated versions: 20.10.9. Latest validated version: 18.06
+[preflight] Some fatal errors occurred:
+        [ERROR FileAvailable--etc-kubernetes-kubelet.conf]: /etc/kubernetes/kubelet.conf already exists
+        [ERROR FileAvailable--etc-kubernetes-bootstrap-kubelet.conf]: /etc/kubernetes/bootstrap-kubelet.conf already exists
+        [ERROR Port-10250]: Port 10250 is in use
+        [ERROR FileAvailable--etc-kubernetes-pki-ca.crt]: /etc/kubernetes/pki/ca.crt already exists
+[preflight] If you know what you are doing, you can make a check non-fatal with `--ignore-preflight-errors=...`
+$ sudo kubeadm join 172.17.0.94:6443 --token srevek.l6dw68bbn4d1v4ft --discovery-token-ca-cert-hash sha256:81d8aab2d890b8cb2ed20ac05fd9cee67828423311dc68b47c7f15d091638d91 --ignore-preflight-errors=All
+[preflight] Running pre-flight checks
+        [WARNING FileAvailable--etc-kubernetes-kubelet.conf]: /etc/kubernetes/kubelet.conf already exists
+        [WARNING FileAvailable--etc-kubernetes-bootstrap-kubelet.conf]: /etc/kubernetes/bootstrap-kubelet.conf already exists
+        [WARNING SystemVerification]: this Docker version is not on the list of validated versions: 20.10.9. Latest validated version: 18.06
+        [WARNING Port-10250]: Port 10250 is in use
+        [WARNING FileAvailable--etc-kubernetes-pki-ca.crt]: /etc/kubernetes/pki/ca.crt already exists
+[discovery] Trying to connect to API Server "172.17.0.94:6443"
+[discovery] Created cluster-info discovery client, requesting info from "https://172.17.0.94:6443"
+[discovery] Requesting info from "https://172.17.0.94:6443" again to validate TLS against the pinned public key
+[discovery] Cluster info signature and contents are valid and TLS certificate validates against pinned roots, will use API Server "172.17.0.94:6443"
+[discovery] Successfully established connection with API Server "172.17.0.94:6443"
+[join] Reading configuration from the cluster...
+[join] FYI: You can look at this config file with 'kubectl -n kube-system get cm kubeadm-config -oyaml'
+[kubelet] Downloading configuration for the kubelet from the "kubelet-config-1.13" ConfigMap in the kube-system namespace
+[kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/config.yaml"
+[kubelet-start] Writing kubelet environment file with flags to file "/var/lib/kubelet/kubeadm-flags.env"
+[kubelet-start] Activating the kubelet service
+[tlsbootstrap] Waiting for the kubelet to perform the TLS Bootstrap...
+[patchnode] Uploading the CRI Socket information "/var/run/dockershim.sock" to the Node API object "host01" as an annotation
+
+This node has joined the cluster:
+* Certificate signing request was sent to apiserver and a response was received.
+* The Kubelet was informed of the new secure connection details.
+
+Run 'kubectl get nodes' on the master to see this node join the cluster.

@@ -5,6 +5,8 @@ https://programmer.group/kubernetes-1.13.3-upgraded-to-1.14.1.html
 kubeadm reset
 sudo apt-get purge kubeadm kubectl kubelet kubernetes-cni kube*
 sudo apt-get autoremove
+sudo rm -rf ~/.kube
+
 sudo rm -fr /etc/kubernetes/; sudo rm -fr ~/.kube/; sudo rm -fr /var/lib/etcd; sudo rm -rf /var/lib/cni/
 sudo iptables -F && sudo iptables -t nat -F && sudo iptables -t mangle -F && sudo iptables -X
 

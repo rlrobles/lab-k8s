@@ -1,0 +1,126 @@
+minikube@minikube:~$ docker
+
+No se ha encontrado la orden «docker», pero se puede instalar con:
+
+sudo apt install docker.io
+
+minikube@minikube:~$ sudo apt-get update
+[sudo] contraseña para minikube: 
+Obj:1 http://security.ubuntu.com/ubuntu focal-security InRelease
+Obj:2 http://pe.archive.ubuntu.com/ubuntu focal InRelease
+Des:3 http://pe.archive.ubuntu.com/ubuntu focal-updates InRelease [114 kB]
+Des:4 http://pe.archive.ubuntu.com/ubuntu focal-backports InRelease [108 kB]
+Des:5 http://pe.archive.ubuntu.com/ubuntu focal-updates/main amd64 DEP-11 Metadata [282 kB]
+Des:6 http://pe.archive.ubuntu.com/ubuntu focal-updates/universe amd64 DEP-11 Metadata [391 kB]
+Des:7 http://pe.archive.ubuntu.com/ubuntu focal-updates/multiverse amd64 DEP-11 Metadata [940 B]
+Des:8 http://pe.archive.ubuntu.com/ubuntu focal-backports/main amd64 DEP-11 Metadata [7.996 B]
+Des:9 http://pe.archive.ubuntu.com/ubuntu focal-backports/universe amd64 DEP-11 Metadata [23,7 kB]
+Descargados 927 kB en 3s (358 kB/s)                                   
+Leyendo lista de paquetes... Hecho
+minikube@minikube:~$ sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+Leyendo lista de paquetes... Hecho
+Creando árbol de dependencias       
+Leyendo la información de estado... Hecho
+ca-certificates ya está en su versión más reciente (20210119~20.04.2).
+fijado ca-certificates como instalado manualmente.
+curl ya está en su versión más reciente (7.68.0-1ubuntu2.7).
+software-properties-common ya está en su versión más reciente (0.99.9.8).
+fijado software-properties-common como instalado manualmente.
+apt-transport-https ya está en su versión más reciente (2.0.6).
+0 actualizados, 0 nuevos se instalarán, 0 para eliminar y 12 no actualizados.
+minikube@minikube:~$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+OK
+minikube@minikube:~$ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu  $(lsb_release -cs)  stable"
+Des:1 https://download.docker.com/linux/ubuntu focal InRelease [57,7 kB]
+Obj:2 http://security.ubuntu.com/ubuntu focal-security InRelease              
+Des:3 https://download.docker.com/linux/ubuntu focal/stable amd64 Packages [13,5 kB]
+Obj:4 http://pe.archive.ubuntu.com/ubuntu focal InRelease     
+Obj:5 http://pe.archive.ubuntu.com/ubuntu focal-updates InRelease
+Obj:6 http://pe.archive.ubuntu.com/ubuntu focal-backports InRelease
+Descargados 71,2 kB en 1s (62,5 kB/s)
+Leyendo lista de paquetes... Hecho
+minikube@minikube:~$ sudo apt-get update
+Obj:1 https://download.docker.com/linux/ubuntu focal InRelease
+Obj:2 http://security.ubuntu.com/ubuntu focal-security InRelease              
+Obj:3 http://pe.archive.ubuntu.com/ubuntu focal InRelease
+Obj:4 http://pe.archive.ubuntu.com/ubuntu focal-updates InRelease
+Obj:5 http://pe.archive.ubuntu.com/ubuntu focal-backports InRelease
+Leyendo lista de paquetes... Hecho
+minikube@minikube:~$ sudo apt-get install docker-ce
+Leyendo lista de paquetes... Hecho
+Creando árbol de dependencias       
+Leyendo la información de estado... Hecho
+Se instalarán los siguientes paquetes adicionales:
+  containerd.io docker-ce-cli docker-ce-rootless-extras docker-scan-plugin
+  git git-man liberror-perl pigz slirp4netns
+Paquetes sugeridos:
+  aufs-tools cgroupfs-mount | cgroup-lite git-daemon-run
+  | git-daemon-sysvinit git-doc git-el git-email git-gui gitk gitweb git-cvs
+  git-mediawiki git-svn
+Se instalarán los siguientes paquetes NUEVOS:
+  containerd.io docker-ce docker-ce-cli docker-ce-rootless-extras
+  docker-scan-plugin git git-man liberror-perl pigz slirp4netns
+0 actualizados, 10 nuevos se instalarán, 0 para eliminar y 12 no actualizados.
+Se necesita descargar 103 MB de archivos.
+Se utilizarán 447 MB de espacio de disco adicional después de esta operación.
+¿Desea continuar? [S/n] S
+Des:1 https://download.docker.com/linux/ubuntu focal/stable amd64 containerd.io amd64 1.4.12-1 [23,7 MB]
+Des:2 http://pe.archive.ubuntu.com/ubuntu focal/universe amd64 pigz amd64 2.4-1 [57,4 kB]
+Des:3 http://pe.archive.ubuntu.com/ubuntu focal/main amd64 liberror-perl all 0.17029-1 [26,5 kB]
+Des:4 http://pe.archive.ubuntu.com/ubuntu focal-updates/main amd64 git-man all 1:2.25.1-1ubuntu3.2 [884 kB]
+Des:5 https://download.docker.com/linux/ubuntu focal/stable amd64 docker-ce-cli amd64 5:20.10.12~3-0~ubuntu-focal [40,7 MB]
+Des:6 http://pe.archive.ubuntu.com/ubuntu focal-updates/main amd64 git amd64 1:2.25.1-1ubuntu3.2 [4.554 kB]
+Des:7 https://download.docker.com/linux/ubuntu focal/stable amd64 docker-ce amd64 5:20.10.12~3-0~ubuntu-focal [21,2 MB]
+Des:8 http://pe.archive.ubuntu.com/ubuntu focal/universe amd64 slirp4netns amd64 0.4.3-1 [74,3 kB]
+Des:9 https://download.docker.com/linux/ubuntu focal/stable amd64 docker-ce-rootless-extras amd64 5:20.10.12~3-0~ubuntu-focal [7.921 kB]
+Des:10 https://download.docker.com/linux/ubuntu focal/stable amd64 docker-scan-plugin amd64 0.12.0~ubuntu-focal [3.518 kB]
+Descargados 103 MB en 9s (11,4 MB/s)                                          
+Seleccionando el paquete pigz previamente no seleccionado.
+(Leyendo la base de datos ... 161187 ficheros o directorios instalados actualmente.)
+Preparando para desempaquetar .../0-pigz_2.4-1_amd64.deb ...
+Desempaquetando pigz (2.4-1) ...
+Seleccionando el paquete containerd.io previamente no seleccionado.
+Preparando para desempaquetar .../1-containerd.io_1.4.12-1_amd64.deb ...
+Desempaquetando containerd.io (1.4.12-1) ...
+Seleccionando el paquete docker-ce-cli previamente no seleccionado.
+Preparando para desempaquetar .../2-docker-ce-cli_5%3a20.10.12~3-0~ubuntu-focal_amd64.deb ...
+Desempaquetando docker-ce-cli (5:20.10.12~3-0~ubuntu-focal) ...
+Seleccionando el paquete docker-ce previamente no seleccionado.
+Preparando para desempaquetar .../3-docker-ce_5%3a20.10.12~3-0~ubuntu-focal_amd64.deb ...
+Desempaquetando docker-ce (5:20.10.12~3-0~ubuntu-focal) ...
+Seleccionando el paquete docker-ce-rootless-extras previamente no seleccionado.
+Preparando para desempaquetar .../4-docker-ce-rootless-extras_5%3a20.10.12~3-0~ubuntu-focal_amd64.deb ...
+Desempaquetando docker-ce-rootless-extras (5:20.10.12~3-0~ubuntu-focal) ...
+Seleccionando el paquete docker-scan-plugin previamente no seleccionado.
+Preparando para desempaquetar .../5-docker-scan-plugin_0.12.0~ubuntu-focal_amd64.deb ...
+Desempaquetando docker-scan-plugin (0.12.0~ubuntu-focal) ...
+Seleccionando el paquete liberror-perl previamente no seleccionado.
+Preparando para desempaquetar .../6-liberror-perl_0.17029-1_all.deb ...
+Desempaquetando liberror-perl (0.17029-1) ...
+Seleccionando el paquete git-man previamente no seleccionado.
+Preparando para desempaquetar .../7-git-man_1%3a2.25.1-1ubuntu3.2_all.deb ...
+Desempaquetando git-man (1:2.25.1-1ubuntu3.2) ...
+Seleccionando el paquete git previamente no seleccionado.
+Preparando para desempaquetar .../8-git_1%3a2.25.1-1ubuntu3.2_amd64.deb ...
+Desempaquetando git (1:2.25.1-1ubuntu3.2) ...
+Seleccionando el paquete slirp4netns previamente no seleccionado.
+Preparando para desempaquetar .../9-slirp4netns_0.4.3-1_amd64.deb ...
+Desempaquetando slirp4netns (0.4.3-1) ...
+Configurando slirp4netns (0.4.3-1) ...
+Configurando docker-scan-plugin (0.12.0~ubuntu-focal) ...
+Configurando liberror-perl (0.17029-1) ...
+Configurando containerd.io (1.4.12-1) ...
+Created symlink /etc/systemd/system/multi-user.target.wants/containerd.service → /lib/systemd/system/containerd.service.
+Configurando docker-ce-cli (5:20.10.12~3-0~ubuntu-focal) ...
+Configurando pigz (2.4-1) ...
+Configurando git-man (1:2.25.1-1ubuntu3.2) ...
+Configurando docker-ce-rootless-extras (5:20.10.12~3-0~ubuntu-focal) ...
+Configurando docker-ce (5:20.10.12~3-0~ubuntu-focal) ...
+Created symlink /etc/systemd/system/multi-user.target.wants/docker.service → /lib/systemd/system/docker.service.
+Created symlink /etc/systemd/system/sockets.target.wants/docker.socket → /lib/systemd/system/docker.socket.
+Configurando git (1:2.25.1-1ubuntu3.2) ...
+Procesando disparadores para man-db (2.9.1-1) ...
+Procesando disparadores para systemd (245.4-4ubuntu3.15) ...
+minikube@minikube:~$ docker --version
+Docker version 20.10.12, build e91ed57
+minikube@minikube:~$ 

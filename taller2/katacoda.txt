@@ -1,0 +1,162 @@
+$ git clone https://github.com/rlrobles/lab-k8s.git
+Cloning into 'lab-k8s'...
+remote: Enumerating objects: 60, done.
+remote: Counting objects: 100% (60/60), done.
+remote: Compressing objects: 100% (42/42), done.
+remote: Total 60 (delta 18), reused 53 (delta 14), pack-reused 0
+Unpacking objects: 100% (60/60), 6.81 MiB | 8.66 MiB/s, done.
+$ cd lab-k8s/
+$ ls
+lab1  lab2  lab2.zip  lab3  labmk  README.md  taller2
+$ cd lab2}
+-bash: cd: lab2}: No such file or directory
+$ d taller2/
+d: command not found
+$ cd taller2/
+$ ls
+draft.txt  Taller2.docx  token.csv
+$ cat token.csv 
+e2a028a7-ed6f-4712-a101-cb81e4f84bf0,admin,admin,"dev,test,prod"
+364237c4-5de2-40c3-9499-7a66223fe576,agileopslv1,devops,dev
+cc43d1a3-9d0c-45c4-bf9d-2bb98720b946,agileopslv2,devops,"dev,test"
+2f9eef79-b83d-4922-a44d-8bcc81398a67,agileopslv3,devops,"dev,test,prod"$ 
+$ curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 67.3M  100 67.3M    0     0  56.0M      0  0:00:01  0:00:01 --:--:-- 56.0M
+$ sudo install minikube-linux-amd64 /usr/local/bin/minikube
+$ mkdir -p ~/.minikube/files/etc/ca-certificates/
+$ ls
+draft.txt  minikube-linux-amd64  Taller2.docx  token.csv
+$ cp token.csv ~/.minikube/files/etc/ca-certificates/token.csv
+$ minikube start \
+>   --extra-config=apiserver.token-auth-file=/etc/ca-certificates/token.csv
+* minikube v1.25.1 on Ubuntu 20.04 (amd64)
+* Automatically selected the docker driver. Other choices: none, ssh
+* The "docker" driver should not be used with root privileges.
+* If you are running minikube within a VM, consider using --driver=none:
+*   https://minikube.sigs.k8s.io/docs/reference/drivers/none/
+
+X Exiting due to DRV_AS_ROOT: The "docker" driver should not be used with root privileges.
+
+$ docker
+
+Usage:  docker [OPTIONS] COMMAND
+
+A self-sufficient runtime for containers
+
+Options:
+      --config string      Location of client config files (default "/root/.docker")
+  -c, --context string     Name of the context to use to connect to the daemon (overrides DOCKER_HOST
+                           env var and default context set with "docker context use")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket(s) to connect to
+  -l, --log-level string   Set the logging level ("debug"|"info"|"warn"|"error"|"fatal") (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default "/root/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default "/root/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default "/root/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Management Commands:
+  app*        Docker App (Docker Inc., v0.9.1-beta3)
+  builder     Manage builds
+  buildx*     Docker Buildx (Docker Inc., v0.7.1-docker)
+  config      Manage Docker configs
+  container   Manage containers
+  context     Manage contexts
+  image       Manage images
+  manifest    Manage Docker image manifests and manifest lists
+  network     Manage networks
+  node        Manage Swarm nodes
+  plugin      Manage plugins
+  scan*       Docker Scan (Docker Inc., v0.12.0)
+  secret      Manage Docker secrets
+  service     Manage services
+  stack       Manage Docker stacks
+  swarm       Manage Swarm
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  build       Build an image from a Dockerfile
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  exec        Run a command in a running container
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  images      List images
+  import      Import the contents from a tarball to create a filesystem image
+  info        Display system-wide information
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  login       Log in to a Docker registry
+  logout      Log out from a Docker registry
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  ps          List containers
+  pull        Pull an image or a repository from a registry
+  push        Push an image or a repository to a registry
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  run         Run a command in a new container
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  search      Search the Docker Hub for images
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  version     Show the Docker version information
+  wait        Block until one or more containers stop, then print their exit codes
+
+Run 'docker COMMAND --help' for more information on a command.
+
+To get more help with docker, check out our guides at https://docs.docker.com/go/guides/
+$ sudo minikube config set driver none
+! These changes will take effect upon a minikube delete and then a minikube start
+$ minikube start   --extra-config=apiserver.token-auth-file=/etc/ca-certificates/token.csv
+* minikube v1.25.1 on Ubuntu 20.04 (amd64)
+* Using the none driver based on user configuration
+
+X Exiting due to GUEST_MISSING_CONNTRACK: Sorry, Kubernetes 1.23.1 requires conntrack to be installed in root's path
+
+$ sudo apt-get install -y conntrack
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  libc-ares2 libnetplan0 python3-netifaces
+Use 'sudo apt autoremove' to remove them.
+Suggested packages:
+  nftables
+The following NEW packages will be installed:
+  conntrack
+0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
+Need to get 30.3 kB of archives.
+After this operation, 104 kB of additional disk space will be used.
+Get:1 http://gb.archive.ubuntu.com/ubuntu focal/main amd64 conntrack amd64 1:1.4.5-2 [30.3 kB]
+Fetched 30.3 kB in 0s (96.1 kB/s)    
+Selecting previously unselected package conntrack.
+(Reading database ... 152327 files and directories currently installed.)
+Preparing to unpack .../conntrack_1%3a1.4.5-2_amd64.deb ...
+Unpacking conntrack (1:1.4.5-2) ...
+Setting up conntrack (1:1.4.5-2) ...
+Processing triggers for man-db (2.9.1-1) ...
+$ minikube start   --extra-config=apiserver.token-auth-file=/etc/ca-certificates/token.csv
+* minikube v1.25.1 on Ubuntu 20.04 (amd64)
+* Using the none driver based on user configuration
+
+X Exiting due to RSRC_INSUFFICIENT_SYS_MEMORY: System only has 1479MiB available, less than the required 1800MiB for Kubernetes

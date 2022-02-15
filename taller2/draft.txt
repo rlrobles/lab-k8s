@@ -1,7 +1,39 @@
 Taller # 2 Minikube
 
+https://minikube.sigs.k8s.io/docs/drivers/virtualbox/
+https://minikube.sigs.k8s.io/docs/drivers/docker/
+https://minikube.sigs.k8s.io/docs/drivers/virtualbox/
+https://minikube.sigs.k8s.io/docs/drivers/vmware/
+https://minikube.sigs.k8s.io/docs/start/
+https://minikube.sigs.k8s.io/docs/handbook/kubectl/
+https://minikube.sigs.k8s.io/docs/commands/delete/
+https://minikube.sigs.k8s.io/docs/tutorials/token-auth-file/
+https://www.shellhacks.com/install-minikube-on-ubuntu-virtualbox/
+https://github.com/kubernetes/minikube/issues/6247
+https://minikube.sigs.k8s.io/docs/drivers/
+https://minikube.sigs.k8s.io/docs/drivers/none/
+https://medium.com/@edmond.dantes/setup-minikube-with-docker-driver-2e27dc03f196
+
+
+
+https://itnext.io/goodbye-docker-desktop-hello-minikube-3649f2a1c469
+https://lemoncode.net/lemoncode-blog/2021/6/12/usando-kubernetes-en-local-minikube-instalacion-en-windows
+https://www.youtube.com/watch?v=9YJG0LBoSdM Solucionar error de compatibilidad de VMware Workstation con Hyper-V
+https://www.icm.es/2021/10/22/como-montar-una-kubernetes-en-una-ubuntu-20-04/
+https://conpilar.es/como-instalar-kubernetes-en-ubuntu-20-04/
+
+
+https://minikube.sigs.k8s.io/docs/tutorials/token-auth-file/
+https://docs.docker.com/engine/install/linux-postinstall/
+https://github.com/kubernetes/minikube/issues/7952
+https://stackoverflow.com/questions/69212190/cannot-start-minikube-in-windows-10-with-docker-as-driver
+
 Requerimientos previos
 Verificar los siguientes puntos
+
+minikube config set driver docker
+
+
 
 https://minikube.sigs.k8s.io/docs/start/
 - kubectl v1.21.5
@@ -34,8 +66,7 @@ alias kubectl="minikube kubectl --"
 minikube dashboard
 
 8. Cree una implementación de ejemplo y expóngalo en el puerto 8080
-kubectl create deployment hello-minikube --
-image=k8s.gcr.io/echoserver:1.4
+kubectl create deployment hello-minikube --image=k8s.gcr.io/echoserver:1.4
 kubectl expose deployment hello-minikube --type=NodePort --port=8080
 
 9. Ver la implementación de la aplicación

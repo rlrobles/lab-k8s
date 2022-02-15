@@ -1,0 +1,240 @@
+minikube@minikube:~$ sudo apt-get update
+[sudo] contraseña para minikube: 
+Obj:1 https://download.docker.com/linux/ubuntu focal InRelease
+Des:2 http://security.ubuntu.com/ubuntu focal-security InRelease [114 kB]
+Obj:3 http://pe.archive.ubuntu.com/ubuntu focal InRelease    
+Obj:4 http://pe.archive.ubuntu.com/ubuntu focal-updates InRelease
+Obj:5 http://pe.archive.ubuntu.com/ubuntu focal-backports InRelease
+Descargados 114 kB en 1s (86,9 kB/s)
+Leyendo lista de paquetes... Hecho
+minikube@minikube:~$ sudo apt-get install -y apt-transport-https ca-certificates curl
+Leyendo lista de paquetes... Hecho
+Creando árbol de dependencias       
+Leyendo la información de estado... Hecho
+ca-certificates ya está en su versión más reciente (20210119~20.04.2).
+curl ya está en su versión más reciente (7.68.0-1ubuntu2.7).
+apt-transport-https ya está en su versión más reciente (2.0.6).
+0 actualizados, 0 nuevos se instalarán, 0 para eliminar y 12 no actualizados.
+minikube@minikube:~$ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+OK
+minikube@minikube:~$ sudo add-apt-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+Obj:1 https://download.docker.com/linux/ubuntu focal InRelease
+Des:2 http://security.ubuntu.com/ubuntu focal-security InRelease [114 kB]     
+Obj:3 http://pe.archive.ubuntu.com/ubuntu focal InRelease                     
+Obj:5 http://pe.archive.ubuntu.com/ubuntu focal-updates InRelease             
+Obj:6 http://pe.archive.ubuntu.com/ubuntu focal-backports InRelease           
+Des:4 https://packages.cloud.google.com/apt kubernetes-xenial InRelease [9.383 B]
+Des:7 https://packages.cloud.google.com/apt kubernetes-xenial/main amd64 Packages [53,6 kB]
+Descargados 177 kB en 2s (111 kB/s)
+Leyendo lista de paquetes... Hecho
+minikube@minikube:~$ sudo apt-get update
+Obj:1 http://security.ubuntu.com/ubuntu focal-security InRelease
+Obj:3 https://download.docker.com/linux/ubuntu focal InRelease                
+Obj:4 http://pe.archive.ubuntu.com/ubuntu focal InRelease            
+Des:2 https://packages.cloud.google.com/apt kubernetes-xenial InRelease [9.383 B]
+Obj:5 http://pe.archive.ubuntu.com/ubuntu focal-updates InRelease
+Obj:6 http://pe.archive.ubuntu.com/ubuntu focal-backports InRelease
+Descargados 9.383 B en 1s (7.096 B/s)
+Leyendo lista de paquetes... Hecho
+minikube@minikube:~$ sudo apt-get install -y kubeadm kubectl kubelet kubernetes-cni
+Leyendo lista de paquetes... Hecho
+Creando árbol de dependencias       
+Leyendo la información de estado... Hecho
+Se instalarán los siguientes paquetes adicionales:
+  conntrack cri-tools ebtables socat
+Paquetes sugeridos:
+  nftables
+Se instalarán los siguientes paquetes NUEVOS:
+  conntrack cri-tools ebtables kubeadm kubectl kubelet kubernetes-cni socat
+0 actualizados, 8 nuevos se instalarán, 0 para eliminar y 12 no actualizados.
+Se necesita descargar 73,6 MB de archivos.
+Se utilizarán 321 MB de espacio de disco adicional después de esta operación.
+Des:3 http://pe.archive.ubuntu.com/ubuntu focal/main amd64 conntrack amd64 1:1.4.5-2 [30,3 kB]
+Des:1 https://packages.cloud.google.com/apt kubernetes-xenial/main amd64 cri-tools amd64 1.19.0-00 [11,2 MB]
+Des:7 http://pe.archive.ubuntu.com/ubuntu focal/main amd64 ebtables amd64 2.0.11-3build1 [80,3 kB]
+Des:8 http://pe.archive.ubuntu.com/ubuntu focal/main amd64 socat amd64 1.7.3.3-2 [323 kB]
+Des:2 https://packages.cloud.google.com/apt kubernetes-xenial/main amd64 kubernetes-cni amd64 0.8.7-00 [25,0 MB]
+Des:4 https://packages.cloud.google.com/apt kubernetes-xenial/main amd64 kubelet amd64 1.23.3-00 [19,5 MB]
+Des:5 https://packages.cloud.google.com/apt kubernetes-xenial/main amd64 kubectl amd64 1.23.3-00 [8.929 kB]
+Des:6 https://packages.cloud.google.com/apt kubernetes-xenial/main amd64 kubeadm amd64 1.23.3-00 [8.580 kB]
+Descargados 73,6 MB en 11s (6.549 kB/s)                                       
+Seleccionando el paquete conntrack previamente no seleccionado.
+(Leyendo la base de datos ... 162372 ficheros o directorios instalados actualmente.)
+Preparando para desempaquetar .../0-conntrack_1%3a1.4.5-2_amd64.deb ...
+Desempaquetando conntrack (1:1.4.5-2) ...
+Seleccionando el paquete cri-tools previamente no seleccionado.
+Preparando para desempaquetar .../1-cri-tools_1.19.0-00_amd64.deb ...
+Desempaquetando cri-tools (1.19.0-00) ...
+Seleccionando el paquete ebtables previamente no seleccionado.
+Preparando para desempaquetar .../2-ebtables_2.0.11-3build1_amd64.deb ...
+Desempaquetando ebtables (2.0.11-3build1) ...
+Seleccionando el paquete kubernetes-cni previamente no seleccionado.
+Preparando para desempaquetar .../3-kubernetes-cni_0.8.7-00_amd64.deb ...
+Desempaquetando kubernetes-cni (0.8.7-00) ...
+Seleccionando el paquete socat previamente no seleccionado.
+Preparando para desempaquetar .../4-socat_1.7.3.3-2_amd64.deb ...
+Desempaquetando socat (1.7.3.3-2) ...
+Seleccionando el paquete kubelet previamente no seleccionado.
+Preparando para desempaquetar .../5-kubelet_1.23.3-00_amd64.deb ...
+Desempaquetando kubelet (1.23.3-00) ...
+Seleccionando el paquete kubectl previamente no seleccionado.
+Preparando para desempaquetar .../6-kubectl_1.23.3-00_amd64.deb ...
+Desempaquetando kubectl (1.23.3-00) ...
+Seleccionando el paquete kubeadm previamente no seleccionado.
+Preparando para desempaquetar .../7-kubeadm_1.23.3-00_amd64.deb ...
+Desempaquetando kubeadm (1.23.3-00) ...
+Configurando conntrack (1:1.4.5-2) ...
+Configurando kubectl (1.23.3-00) ...
+Configurando ebtables (2.0.11-3build1) ...
+Configurando socat (1.7.3.3-2) ...
+Configurando cri-tools (1.19.0-00) ...
+Configurando kubernetes-cni (0.8.7-00) ...
+Configurando kubelet (1.23.3-00) ...
+Created symlink /etc/systemd/system/multi-user.target.wants/kubelet.service → /lib/systemd/system/kubelet.service.
+Configurando kubeadm (1.23.3-00) ...
+Procesando disparadores para man-db (2.9.1-1) ...
+minikube@minikube:~$ sudo apt-mark hold kubelet kubeadm kubectl
+kubelet fijado como retenido.
+kubeadm fijado como retenido.
+kubectl fijado como retenido.
+minikube@minikube:~$ sudo swapoff -a
+minikube@minikube:~$ sudo ufw disable
+El cortafuegos está detenido y deshabilitado en el arranque del sistema
+minikube@minikube:~$ kubectl version
+Client Version: version.Info{Major:"1", Minor:"23", GitVersion:"v1.23.3", GitCommit:"816c97ab8cff8a1c72eccca1026f7820e93e0d25", GitTreeState:"clean", BuildDate:"2022-01-25T21:25:17Z", GoVersion:"go1.17.6", Compiler:"gc", Platform:"linux/amd64"}
+The connection to the server localhost:8080 was refused - did you specify the right host or port?
+minikube@minikube:~$ kubelet
+E0215 02:00:56.992144   10473 server.go:279] "Failed to construct kubelet dependencies" err="mkdir /var/lib/kubelet: permission denied"
+minikube@minikube:~$ kubeadm
+
+
+    ┌──────────────────────────────────────────────────────────┐
+    │ KUBEADM                                                  │
+    │ Easily bootstrap a secure Kubernetes cluster             │
+    │                                                          │
+    │ Please give us feedback at:                              │
+    │ https://github.com/kubernetes/kubeadm/issues             │
+    └──────────────────────────────────────────────────────────┘
+
+Example usage:
+
+    Create a two-machine cluster with one control-plane node
+    (which controls the cluster), and one worker node
+    (where your workloads, like Pods and Deployments run).
+
+    ┌──────────────────────────────────────────────────────────┐
+    │ On the first machine:                                    │
+    ├──────────────────────────────────────────────────────────┤
+    │ control-plane# kubeadm init                              │
+    └──────────────────────────────────────────────────────────┘
+
+    ┌──────────────────────────────────────────────────────────┐
+    │ On the second machine:                                   │
+    ├──────────────────────────────────────────────────────────┤
+    │ worker# kubeadm join <arguments-returned-from-init>      │
+    └──────────────────────────────────────────────────────────┘
+
+    You can then repeat the second step on as many other machines as you like.
+
+Usage:
+  kubeadm [command]
+
+Available Commands:
+  certs       Commands related to handling kubernetes certificates
+  completion  Output shell completion code for the specified shell (bash or zsh)
+  config      Manage configuration for a kubeadm cluster persisted in a ConfigMap in the cluster
+  help        Help about any command
+  init        Run this command in order to set up the Kubernetes control plane
+  join        Run this on any machine you wish to join an existing cluster
+  kubeconfig  Kubeconfig file utilities
+  reset       Performs a best effort revert of changes made to this host by 'kubeadm init' or 'kubeadm join'
+  token       Manage bootstrap tokens
+  upgrade     Upgrade your cluster smoothly to a newer version with this command
+  version     Print the version of kubeadm
+
+Flags:
+      --add-dir-header           If true, adds the file directory to the header of the log messages
+  -h, --help                     help for kubeadm
+      --log-file string          If non-empty, use this log file
+      --log-file-max-size uint   Defines the maximum size a log file can grow to. Unit is megabytes. If the value is 0, the maximum file size is unlimited. (default 1800)
+      --one-output               If true, only write logs to their native severity level (vs also writing to each lower severity level)
+      --rootfs string            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+      --skip-headers             If true, avoid header prefixes in the log messages
+      --skip-log-headers         If true, avoid headers when opening log files
+  -v, --v Level                  number for the log level verbosity
+
+Additional help topics:
+  kubeadm alpha      Kubeadm experimental sub-commands
+
+Use "kubeadm [command] --help" for more information about a command.
+minikube@minikube:~$ kubectl
+kubectl controls the Kubernetes cluster manager.
+
+ Find more information at: https://kubernetes.io/docs/reference/kubectl/overview/
+
+Basic Commands (Beginner):
+  create        Create a resource from a file or from stdin
+  expose        Take a replication controller, service, deployment or pod and expose it as a new
+Kubernetes service
+  run           Run a particular image on the cluster
+  set           Set specific features on objects
+
+Basic Commands (Intermediate):
+  explain       Get documentation for a resource
+  get           Display one or many resources
+  edit          Edit a resource on the server
+  delete        Delete resources by file names, stdin, resources and names, or by resources and
+label selector
+
+Deploy Commands:
+  rollout       Manage the rollout of a resource
+  scale         Set a new size for a deployment, replica set, or replication controller
+  autoscale     Auto-scale a deployment, replica set, stateful set, or replication controller
+
+Cluster Management Commands:
+  certificate   Modify certificate resources.
+  cluster-info  Display cluster information
+  top           Display resource (CPU/memory) usage
+  cordon        Mark node as unschedulable
+  uncordon      Mark node as schedulable
+  drain         Drain node in preparation for maintenance
+  taint         Update the taints on one or more nodes
+
+Troubleshooting and Debugging Commands:
+  describe      Show details of a specific resource or group of resources
+  logs          Print the logs for a container in a pod
+  attach        Attach to a running container
+  exec          Execute a command in a container
+  port-forward  Forward one or more local ports to a pod
+  proxy         Run a proxy to the Kubernetes API server
+  cp            Copy files and directories to and from containers
+  auth          Inspect authorization
+  debug         Create debugging sessions for troubleshooting workloads and nodes
+
+Advanced Commands:
+  diff          Diff the live version against a would-be applied version
+  apply         Apply a configuration to a resource by file name or stdin
+  patch         Update fields of a resource
+  replace       Replace a resource by file name or stdin
+  wait          Experimental: Wait for a specific condition on one or many resources
+  kustomize     Build a kustomization target from a directory or URL.
+
+Settings Commands:
+  label         Update the labels on a resource
+  annotate      Update the annotations on a resource
+  completion    Output shell completion code for the specified shell (bash, zsh or fish)
+
+Other Commands:
+  alpha         Commands for features in alpha
+  api-resources Print the supported API resources on the server
+  api-versions  Print the supported API versions on the server, in the form of "group/version"
+  config        Modify kubeconfig files
+  plugin        Provides utilities for interacting with plugins
+  version       Print the client and server version information
+
+Usage:
+  kubectl [flags] [options]
+
+Use "kubectl <command> --help" for more information about a given command.
+Use "kubectl options" for a list of global command-line options (applies to all commands).
+minikube@minikube:~$ 

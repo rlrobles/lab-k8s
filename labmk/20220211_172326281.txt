@@ -1,0 +1,51 @@
+Taller # 2 Minikube
+
+Pasos previos
+
+sudo apt-get update -y
+sudo apt-get upgrade -y
+sudo apt-get install apt-transport-https wget curl
+
+
+
+1. Instalar Minikube
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+
+2. Cree la carpeta que se copiará en el plano de control.
+mkdir -p ~/.minikube/files/etc/ca-certificates/
+
+
+Fix Crear archivo token.csv
+
+
+3. Copie el archivo del token en la carpeta
+cp token.csv ~/.minikube/files/etc/ca-certificates/token.csv
+
+4. Inicie minikube con el archivo de token especificado.
+minikube start \
+ --extra-config=apiserver.token-auth-file=/etc/ca-certificates/token.csv
+
+5. Acceder al cluster
+kubectl get po -A
+
+6. Agregar la siguiente configuración
+alias kubectl="minikube kubectl --"
+
+7. Iniciar el Dashboard
+minikube dashboard
+
+8. Cree una implementación de ejemplo y expóngalo en el puerto 8080
+kubectl create deployment hello-minikube --
+image=k8s.ger.io/echoserver:1.4
+
+kubectl expose deployment hello-minikube --type=NodePort --port=8080
+
+9. Ver la implementación de la aplicación
+minikube service hello-minikube
+
+10. Use kubectl para reenviar el puerto
+kubectl port-forward service/hello-minikube 7080:8080
+
+11. Ver la aplicacion corriendo
+http://localhost:7080/

@@ -1,0 +1,26 @@
+Lab1
+
+
+https://codeburst.io/kubernetes-ckad-weekly-challenge-7-migrate-a-service-68c7af41c8df
+https://www.youtube.com/watch?v=DCoBcpOA7W4 [KUBERNETES 2021 - De NOVATO a PRO! (CURSO COMPLETO)]
+
+
+kubectl create secret generic xh8jqk7z --from-literal=tkn=hy8szK2iu
+kubectl get pods -n cal
+kubectl create ns cal
+kubectl create -f chk1.yaml
+
+kubectl create ns pwn
+kubectl create -f chk1.yaml
+
+kubectl create ns zz8
+kubectl apply -f pods.yaml
+kubectl get pods -n zz8
+
+kubectl get pod nginx -n zz8
+kubectl get pod httpd -n zz8
+
+kubectl top pod nginx -n zz8
+kubectl cp <some-namespace>/<some-pod>:/tmp/foo /tmp/bar
+kubectl create secret generic xh8jqk7z --from-literal=tkn=hy8szK2iu
+kubectl describe deployment metrics-server -n kube-system

@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: sjq
+---
+apiVersion: v1
+data:
+  tkn: aHk4c3pLMml1
+kind: Secret
+metadata:
+  name: xh8jqk7z
+  namespace: sjq
+type: Opaque
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: server
+  namespace: sjq
+spec:
+  containers:
+  - name: httpd
+    image: httpd:2.4.39-alpine
+    env:
+    - name: SECRET_TKN
+      valueFrom:
+        secretKeyRef:
+          name: xh8jqk7z
+          key: tkn
+    ports:
+    - containerPort: 80

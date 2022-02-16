@@ -3,7 +3,12 @@ Lab1
 
 https://codeburst.io/kubernetes-ckad-weekly-challenge-7-migrate-a-service-68c7af41c8df
 https://www.youtube.com/watch?v=DCoBcpOA7W4 [KUBERNETES 2021 - De NOVATO a PRO! (CURSO COMPLETO)]
-
+https://www.linuxsysadmins.com/service-unavailable-kubernetes-metrics/
+https://minikube.sigs.k8s.io/docs/commands/delete/
+https://kubernetes.io/docs/tasks/administer-cluster/dns-debugging-resolution/
+https://kubernetes.io/es/docs/concepts/configuration/secret/
+https://stackoverflow.com/questions/52407277/how-to-copy-files-from-kubernetes-pods-to-local-system
+https://howchoo.com/kubernetes/kubectl-cp-copy-files-to-from-pods
 
 kubectl create secret generic xh8jqk7z --from-literal=tkn=hy8szK2iu
 kubectl get pods -n cal
@@ -24,3 +29,9 @@ kubectl top pod nginx -n zz8
 kubectl cp <some-namespace>/<some-pod>:/tmp/foo /tmp/bar
 kubectl create secret generic xh8jqk7z --from-literal=tkn=hy8szK2iu
 kubectl describe deployment metrics-server -n kube-system
+kubectl get deployment metrics-server -n kube-system
+
+
+kubectl exec -n zz8 -it httpd -- sh
+kubectl cp result.txt zz8/httpd:/home/ubuntu/hcp001
+kubectl top pod httpd -n zz8 > result.txt

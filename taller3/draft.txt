@@ -1,4 +1,6 @@
-kubectl get nodes
+https://www3.ntu.edu.sg/home/ehchua/programming/sql/PostgreSQL_GetStarted.html
+https://alvinalexander.com/blog/post/postgresql/log-in-postgresql-database/
 
+kubectl get nodes
 kubectl apply -f .
 minikube ip

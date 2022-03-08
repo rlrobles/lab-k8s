@@ -1,33 +1,66 @@
+
+https://www.katacoda.com/courses/kubernetes/playground
+https://www.katacoda.com/mjboxboat/courses/kubernetes-basic/module-2
+https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/
+https://stackoverflow.com/questions/53411958/how-to-view-logs-of-failed-jobs-with-kubectl
+https://www.codegrepper.com/code-examples/shell/kubectl+get+logs+job
+https://github.com/kubernetes/dashboard
+https://docs.aws.amazon.com/eks/latest/userguide/dashboard-tutorial.html
+https://www.aquasec.com/cloud-native-academy/kubernetes-101/kubernetes-dashboard/
+https://www.returngis.net/2019/03/instalar-kubernetes-dashboard-en-tu-cluster/
+https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
+https://kubernetes.io/docs/concepts/workloads/controllers/job
+
 Taller
 
 1. Crear el siguiente Job
 
 2. Le damos 
-kubectl apply -f job.yaml
+kubectl apply -f jobv1.yaml
 
 3. Vemos los jobs generados 
 kubectl get jobs
 
 4. Luego revisamos los logs 
-kubectl logs countdown xxxx
+kubectl logs job/countdown
 
 5. Modificamos el job anterior para hacer un job secuencial quedando de esta 
 manera 
 
+kubectl edit job/countdown > jobv2.yaml
+kubectl delete job/countdown
+kubectl apply -f jobv2.yaml
+
 6. Revisamos que se complete el numero de veces especificado 
+kubectl get pods
 
 7. Modificamos el job anterior para hacer un job en paralelo quedando asi 
 
+kubectl edit job/sequential-countdown > jobv3.yaml
+kubectl delete job/sequential-countdown
+kubectl apply -f jobv3.yaml
 
 8. Revisamos que se haya creado correctamente 
 
 9. Y ahora crearemos un cron job 
 
 10. Creamos el cronjob
-kubectl apply -f cronjob.yaml
+kubectl apply -f cronJob.yaml
 
 11. Comprobamos que se ejecute cada minuto 
 
 12. Finalmente Comprobamos en el dashboard cuantos pods se han lanzado y que 
 eventos han surgido.
 
+
+kubectl delete job/countdown
+kubectl delete job/sequential-countdown
+kubectl delete job/parallel-countdown
+
+
+
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.5.0/aio/deploy/recommended.yaml
+kubectl get pods -n kube-system
+kubectl get svc -n kube-system
+kubectl proxy

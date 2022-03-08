@@ -1,0 +1,39 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: do100-probes
+  labels:
+    app: do100-probes
+spec:
+  rules:
+    - host: hello.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: do100-probes
+                port:
+                  number: 8080
+
+# ...output omitted...
+# spec:
+#  ...output omitted...
+#  template:
+#  ...output omitted...
+#  spec:
+#  containers:
+#  - image: quay.io/redhattraining/do100-probes:latest
+#  ...output omitted...readinessProbe:
+#  httpGet:
+#  path: /ready
+#  port: 8080
+#  initialDelaySeconds: 2
+#  timeoutSeconds: 2
+#  livenessProbe:
+#  httpGet:
+#  path: /healthz
+#  port: 8080
+#  initialDelaySeconds: 2
+#  timeoutSeconds: 2

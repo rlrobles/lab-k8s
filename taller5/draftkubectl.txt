@@ -1,0 +1,74 @@
+=============================================================================
+
+1.1
+kubectl create deployment do100-probes --image quay.io/redhattraining/do100-probes:latest
+
+1.2
+kubectl expose deployment/do100-probes --port 8080
+
+1.3
+Cambiar INGRESS-HOST
+
+1.4
+kubectl apply -f probes-ingress.yml
+
+=============================================================================
+
+2.1
+kubectl get ingress/do100-probes
+
+2.2
+curl hello.example.com/ready
+
+2.3
+curl hello.example.com/healthz
+
+2.4
+curl hello.example.com
+
+=============================================================================
+
+3.1
+kubectl edit deployment/do100-probes
+
+Agregar Ports y demas
+ httpGet:
+ path: /ready
+ port: 8080
+ initialDelaySeconds: 2
+ timeoutSeconds: 2
+ livenessProbe:
+ httpGet:
+ path: /healthz
+ port: 8080
+ initialDelaySeconds: 2
+ timeoutSeconds: 2
+
+3.2
+kubectl describe deployment do100-probes
+
+3.3
+kubectl get pods
+kubectl get pods +30 segundos
+
+3.4
+kubectl logs -f do100-probes-7794c5cb4f-vwl4x
+
+=============================================================================
+4.1
+curl http://hello.example.com/flip?op=kill-health
+curl http://hello.example.com/flip?op=kill-ready
+
+
+4.2
+kubectl logs -f do100-probes-7794c5cb4f-vwl4x
+
+
+4.3
+kubectl get pods
+
+4.4
+kubectl logs -f do100-probes-95758759b-4cm2j
+kubectl delete deployment do100-probes
+kubectl delete service do100-probes
+kubectl delete ingress do100-probes

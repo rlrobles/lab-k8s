@@ -1,0 +1,150 @@
+
+https://linuxize.com/post/how-to-install-vagrant-on-ubuntu-20-04/
+https://linuxize.com/post/wget-command-examples/
+
+
+sudo apt update
+sudo apt install virtualbox
+curl -O https://releases.hashicorp.com/vagrant/2.2.9/vagrant_2.2.9_x86_64.deb
+sudo apt install ./vagrant_2.2.9_x86_64.deb
+vagrant --version
+
+
+vagrant up
+vagrant status
+vagrant ssh manager
+
+
+Investigate Multi container Pod issue
+1.Get the amount of nodes plus their status and 
+all available kubectl contexts.
+kubectl get nodes
+
+2.In namespace management there is a pod named web-server, check its status.
+kubectl get pods -n management
+kubectl get pod web-server
+
+3.Find the reason / error in the pod logs.
+kubect get logs web-server
+
+4.Directly gather the logs of the docker containers and check for issues.
+kubectl get logs web-server
+
+5.Fix the pod and ensure its running.
+
+
+Scheduler Playground
+6.How many pods and services are in namespace management? 
+Create a command that uses jsonpath to output the number.
+
+service_ip=$(kubectl get service web -o jsonpath='{.spec.clusterIP}')
+node=$(kubectl get pods --field-selector metadata.name=mysql-2 -o=jsonpath='{.items[0].spec.nodeName}')
+
+kubectl get pods -o json
+kubectl get pods -o=jsonpath='{@}'
+kubectl get pods -o=jsonpath='{.items[0]}'
+kubectl get pods -o=jsonpath='{.items[0].metadata.name}'
+kubectl get pods -o=jsonpath="{.items[*]['metadata.name', 'status.capacity']}"
+kubectl get pods -o=jsonpath='{range .items[*]}{.metadata.name}{"\t"}{.status.startTime}{"\n"}{end}'
+kubectl get pods -o=jsonpath="{range .items[*]}{.metadata.name}{'\t'}{.status.startTime}{'\n'}{end}"
+kubectl get pods -o=jsonpath="{range .items[*]}{.metadata.name}{\"\t\"}{.status.startTime}{\"\n\"}{end}"
+
+
+
+# kubectl does not support regular expressions for JSONpath output
+# The following command does not work
+kubectl get pods -o jsonpath='{.items[?(@.metadata.name=~/^test$/)].metadata.name}'
+# The following command achieves the desired result
+kubectl get pods -o json | jq -r '.items[] | select(.metadata.name | test("test-")).spec.containers[].image'
+
+
+
+
+kubectl get pods -n management
+kubectl get svc -n management
+
+7.How many schedulers are running? Find the parameters each is started with.
+kubectl get pods --all-namespaces | grep scheduler
+
+8.There is an existing deployment named what-a-deployment in namespace development . 
+With which scheduler are the pods of that deployment scheduled?
+
+kubectl get deployment what-a-deployment -n management
+
+
+9.Create a pod of image nginx:1.16.1-alpine in 
+namespace development using the scheduler 
+kube-scheduler-amazing and check its running + 
+which node it got assigned.
+
+kubectl apply -f pod1.yaml
+kubectl describe pods kube-scheduler-amazing -n kube-system
+
+10.Create another pod of 
+image nginx:1.16.1-alpine in namespace development 
+using the scheduler kube-scheduler-none-existing. 
+What status does the pod have and what do the logs show?
+
+kubectl apply -f pod2.yaml
+
+
+
+Advanced Scheduling
+11.How many pods of deployment coredns are running on which nodes.
+
+kubectl get nodes
+kubectl get deployment 
+
+12.Why are coredns pods running the nodes they are?
+Replicate Set / StateFull Set
+
+13.Show the config of coredns . 
+The actual Corefile not the k8s yaml.
+kubectl describe coredns -o yaml
+kubectl get service kube-dns -n kube-system
+
+kubectl exec -i -t dnsutils -- nslookup kubernetes.default
+kubectl exec -ti dnsutils -- cat /etc/resolv.conf
+kubectl get pods --namespace=kube-system -l k8s-app=kube-dns
+
+
+
+14.Create a deployment of image 
+httpd:2.4.41-alpine with 3 replicas 
+which can run on all nodes. 
+How many are running on each node?
+
+kubectl apply -f deployment.yaml
+kubectl get pods -l 
+
+15.Now change the pods to only run on master nodes
+kubectl drain $NODE_WORKER
+
+Node Management
+11.Drain the node cluster1-worker1. Save single pods manually to restore afterwards.
+kubectl drain $NODE_WORKER
+
+12.Remove the node cluster1-worker1 temporarily from the cluster.
+kubectl uncordon $NODE_WORKER
+
+13.Add the worker node back to the cluster 
+and allow scheduling again. Restore the single pods.
+kubeadm cordon $NODE_WORKER
+
+14.Create a pod of image httpd:2.4.41-alpine 
+and confirm its scheduled on cluster1-worker1.
+kubectl apply -f pod.yaml
+
+15.Expose the pod via a NodePort service and connect to 
+it using curl. You should be able to connect 
+to the internal IP of cluster1-worker1 from your local machine.
+- Agregar configuracion NodePort
+curl http://localhost:8080
+
+16.Suspend the master node (vagrant suspend cluster1-master1), 
+then check: is the pod still reachable via the NodePort service?
+vagrant suspend cluster1-master1
+
+17.Resume the master node (vagrant resume cluster1-master1) 
+and confirm node status normal.
+vagrant resume cluster1-master1

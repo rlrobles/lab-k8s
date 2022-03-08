@@ -1,0 +1,101 @@
+https://github.com/tech-learning-collective/katacoda-scenarios/blob/master/Vagrantfile
+https://ubunlog.com/vagrant-crea-configura-entornos-desarrollo-virtualizados/
+https://www.katacoda.com/courses/ubuntu/playground2004
+https://linuxize.com/post/how-to-install-vagrant-on-ubuntu-20-04/
+https://www.linuxteaching.com/article/how_to_install_vagrant_on_ubuntu_2004
+https://github.com/wuestkamp/cka-example-environments/blob/master/cluster1/Vagrantfile
+https://levelup.gitconnected.com/kubernetes-cka-example-questions-practical-challenge-86318d85b4d
+
+
+
+curl -O https://releases.hashicorp.com/vagrant/2.2.9/vagrant_2.2.9_x86_64.deb
+sudo apt install ./vagrant_2.2.9_x86_64.deb
+vagrant --version
+
+
+
+
+========================================
+sudo apt update
+sudo apt install virtualbox
+========================================
+curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com
+$(lsb_release -cs) main"
+sudo apt-get update && sudo apt-get install vagrant
+========================================
+#Instalar modulos
+sudo apt-get update
+sudo apt-get install -y apt-transport-https ca-certificates curl
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+sudo add-apt-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+sudo apt-get update
+sudo apt-get install -y kubectl
+sudo apt-mark hold kubectl
+sudo swapoff -a
+sudo ufw disable
+========================================
+git clone https://github.com/wuestkamp/cka-example-environments.git
+cd cka-example-environments/cluster1
+./up.sh
+========================================
+
+vagrant up
+
+vagrant ssh cluster1-master1
+sudo -i
+kubectl get node
+========================================
+
+
+
+
+vagrant up
+vagrant ssh
+
+
+
+
+1
+kubectl get node
+kubectl config get-contexts
+kubectl cluster-info --context
+
+2
+kubectl get pods --all-namespaces
+
+3
+kubectl describe pod coredns-****** -n kube-system
+
+
+1
+kubectl get pods,svc -n kube-system 
+kubectl get pods,svc -n kube-system -o jsonpath="{range.items[*]}{.metadata.name}{'\n'}" | wc -l
+
+2
+kubectl get pods -n kube-system | grep scheduler
+
+3
+k -n development get deploy what-a-deployment -o yaml
+k -n development get deploy what-a-deployment -o yaml | grep
+scheduler
+=> default-scheduler
+
+4
+kubectl apply -f pod.yaml
+kubectl get pod -o wide -n development
+kubectl -n development get pod pod -o yaml | grep scheduler
+
+
+
+
+kubectl get pood --all-namespaces | grep coredns
+kubectl get pood --all-namespaces -o wide | grep coredns
+kubectl -n kube-system get all | grep coredns
+
+kubectl -n kube-system get pod coredns******* -o yaml
+
+
+
+kubectl drain kind-worker
+

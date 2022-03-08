@@ -1,0 +1,33 @@
+Taller
+
+1. Crear el siguiente Job
+
+2. Le damos 
+kubectl apply -f job.yaml
+
+3. Vemos los jobs generados 
+kubectl get jobs
+
+4. Luego revisamos los logs 
+kubectl logs countdown xxxx
+
+5. Modificamos el job anterior para hacer un job secuencial quedando de esta 
+manera 
+
+6. Revisamos que se complete el numero de veces especificado 
+
+7. Modificamos el job anterior para hacer un job en paralelo quedando asi 
+
+
+8. Revisamos que se haya creado correctamente 
+
+9. Y ahora crearemos un cron job 
+
+10. Creamos el cronjob
+kubectl apply -f cronjob.yaml
+
+11. Comprobamos que se ejecute cada minuto 
+
+12. Finalmente Comprobamos en el dashboard cuantos pods se han lanzado y que 
+eventos han surgido.
+

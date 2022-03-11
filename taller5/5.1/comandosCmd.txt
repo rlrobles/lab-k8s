@@ -1,0 +1,598 @@
+Microsoft Windows [Versión 10.0.22000.493]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+C:\Users\Royer Leandro>minikube start --nodes 2 -p multinode-demo
+😄  [multinode-demo] minikube v1.24.0 en Microsoft Windows 11 Home Single Language 10.0.22000 Build 22000
+✨  Using the docker driver based on existing profile
+👍  Starting control plane node multinode-demo in cluster multinode-demo
+🚜  Pulling base image ...
+🏃  Updating the running docker "multinode-demo" container ...
+^C
+C:\Users\Royer Leandro>minikube
+minikube provisions and manages local Kubernetes clusters optimized for development workflows.
+
+Basic Commands:
+  start          Starts a local Kubernetes cluster
+  status         Gets the status of a local Kubernetes cluster
+  stop           Stops a running local Kubernetes cluster
+  delete         Elimina un cluster de Kubernetes local
+  dashboard      Acceder al panel de Kubernetes que corre dentro del cluster minikube
+  pause          pause Kubernetes
+  unpause        unpause Kubernetes
+
+Images Commands:
+  docker-env     Configura un entorno para usar el Docker daemon de minikube
+  podman-env     Configura un entorno para usar el servicio Podman de minikube
+  cache          Agrega, elimina, o empuja una imagen local dentro de minikube, haciendo (add, delete, push)
+respectivamente.
+  image          Manage images
+
+Configuration and Management Commands:
+  addons         Habilita o deshabilita un complemento de minikube
+  config         Modify persistent configuration values
+  profile        Get or list the current profiles (clusters)
+  update-context Update kubeconfig in case of an IP or port change
+
+Networking and Connectivity Commands:
+  service        Returns a URL to connect to a service
+  tunnel         Conectar a los servicios LoadBalancer
+
+Advanced Commands:
+  mount          Mounts the specified directory into minikube
+  ssh            Log into the minikube environment (for debugging)
+  kubectl        Run a kubectl binary matching the cluster version
+  node           Usa (add, remove, list) para agregar, eliminar o listar nodos adicionales.
+  cp             Copy the specified file into minikube
+
+Troubleshooting Commands:
+  ssh-key        Retrieve the ssh identity key path of the specified node
+  ssh-host       Retrieve the ssh host key of the specified node
+  ip             Retrieves the IP address of the specified node
+  logs           Returns logs to debug a local Kubernetes cluster
+  update-check   Print current and latest version number
+  version        Print the version of minikube
+  options        Show a list of global command-line options (applies to all commands).
+
+Other Commands:
+  completion     Generate command completion for a shell
+
+Use "minikube <command> --help" for more information about a given command.
+
+C:\Users\Royer Leandro>minikube start
+😄  minikube v1.24.0 en Microsoft Windows 11 Home Single Language 10.0.22000 Build 22000
+✨  Controlador docker seleccionado automáticamente. Otras opciones: virtualbox, ssh
+👍  Starting control plane node minikube in cluster minikube
+🚜  Pulling base image ...
+🔥  Creando docker container (CPUs=2, Memory=5000MB) ...| E0310 16:04:04.177248    7732 kic.go:267] icacls failed applying permissions - err - [%!s(<nil>)], output - [archivo procesado: C:\Users\Royer Leandro\.minikube\machines\minikube\id_rsa
+Se procesaron correctamente 1 archivos; error al procesar 0 archivos]
+
+🐳  Preparando Kubernetes v1.22.3 en Docker 20.10.8...
+    ▪ Generating certificates and keys ...
+    ▪ Booting up control plane ...
+    ▪ Configuring RBAC rules ...
+🔎  Verifying Kubernetes components...
+❗  Executing "docker container inspect minikube --format={{.State.Status}}" took an unusually long time: 2.833298s
+💡  Restarting the docker service may improve performance.
+    ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v5
+🌟  Complementos habilitados: storage-provisioner, default-storageclass
+🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
+
+C:\Users\Royer Leandro>kubectl cluster-info
+Kubernetes control plane is running at https://127.0.0.1:54001
+CoreDNS is running at https://127.0.0.1:54001/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+
+C:\Users\Royer Leandro>kubectl get nodes
+NAME       STATUS   ROLES                  AGE     VERSION
+minikube   Ready    control-plane,master   5m50s   v1.22.3
+
+C:\Users\Royer Leandro>kubectl create deployment do100-probes --image quay.io/redhattraining/do100-probes:latest
+deployment.apps/do100-probes created
+
+C:\Users\Royer Leandro>kubectl expose deployment/do100-probes --port 8080
+service/do100-probes exposed
+
+C:\Users\Royer Leandro>cd C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl apply -f probes-ingress.yml
+error: the path "probes-ingress.yml" does not exist
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>dir
+ El volumen de la unidad C es OS
+ El número de serie del volumen es: D434-5694
+
+ Directorio de C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5
+
+10/03/2022  15:43    <DIR>          .
+09/03/2022  01:04    <DIR>          ..
+10/03/2022  15:55    <DIR>          5.1
+04/03/2022  17:41             8.522 draft.txt
+04/03/2022  17:43             1.470 draftkubectl.txt
+10/03/2022  16:13               379 probes-ingress.yaml
+04/03/2022  17:52            60.174 Taller Practico Clase 5.docx
+               4 archivos         70.545 bytes
+               3 dirs  99.472.674.816 bytes libres
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl apply -f probes-ingress.yaml
+ingress.networking.k8s.io/do100-probes created
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl get Ingress/do100-probes
+NAME           CLASS    HOSTS               ADDRESS   PORTS   AGE
+do100-probes   <none>   hello.example.com             80      38s
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl describe Ingress/do100-probes
+Name:             do100-probes
+Namespace:        default
+Address:
+Default backend:  default-http-backend:80 (<error: endpoints "default-http-backend" not found>)
+Rules:
+  Host               Path  Backends
+  ----               ----  --------
+  hello.example.com
+                     /   do100-probes:8080 (172.17.0.3:8080)
+Annotations:         <none>
+Events:              <none>
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl get ingress/do100-probes
+NAME           CLASS    HOSTS               ADDRESS   PORTS   AGE
+do100-probes   <none>   hello.example.com             80      83s
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>curl hello.example.com/ready
+curl: (6) Could not resolve host: hello.example.com
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>curl http://localhost:8080
+<html><head><meta http-equiv='refresh' content='1;url=/login?from=%2F'/><script>window.location.replace('/login?from=%2F');</script></head><body style='background-color:white; color:white;'>
+
+
+Authentication required
+<!--
+-->
+
+</body></html>
+
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>curl http://localhost:8080/ready
+<html><head><meta http-equiv='refresh' content='1;url=/login?from=%2Fready'/><script>window.location.replace('/login?from=%2Fready');</script></head><body style='background-color:white; color:white;'>
+
+
+Authentication required
+<!--
+-->
+
+</body></html>
+
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl expose deployment/do100-probes --port 9090
+Error from server (AlreadyExists): services "do100-probes" already exists
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl get svc
+NAME           TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+do100-probes   ClusterIP   10.110.39.43   <none>        8080/TCP   4m23s
+kubernetes     ClusterIP   10.96.0.1      <none>        443/TCP    10m
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl delete svc do100-probes
+service "do100-probes" deleted
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl get deployment
+NAME           READY   UP-TO-DATE   AVAILABLE   AGE
+do100-probes   1/1     1            1           4m56s
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl create deployment do100-probes --image quay.io/redhattraining/do100-probes:latest
+error: failed to create deployment: deployments.apps "do100-probes" already exists
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl expose deployment/do100-probes --port 9091
+service/do100-probes exposed
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>curl http://localhost:9091/ready
+curl: (7) Failed to connect to localhost port 9091 after 2246 ms: Connection refused
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5> minikube ip
+❗  Executing "docker container inspect minikube --format={{.State.Status}}" took an unusually long time: 3.2402734s
+💡  Restarting the docker service may improve performance.
+192.168.58.2
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5> minikube ip
+❗  Executing "docker container inspect minikube --format={{.State.Status}}" took an unusually long time: 2.8176903s
+💡  Restarting the docker service may improve performance.
+192.168.58.2
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl get ingress/do100-probes
+NAME           CLASS    HOSTS               ADDRESS   PORTS   AGE
+do100-probes   <none>   hello.example.com             80      28m
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl delete ingress/do100-probes
+ingress.networking.k8s.io "do100-probes" deleted
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl get svc
+NAME           TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
+do100-probes   ClusterIP   10.105.183.203   <none>        9091/TCP   24m
+kubernetes     ClusterIP   10.96.0.1        <none>        443/TCP    36m
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl get deployment
+NAME           READY   UP-TO-DATE   AVAILABLE   AGE
+do100-probes   1/1     1            1           30m
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl apply -f probes-ingress.yaml
+The Ingress "do100-probes" is invalid: spec.rules[0].host: Invalid value: "192.168.99.103": must be a DNS name, not an IP address
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl get svc
+NAME           TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
+do100-probes   ClusterIP   10.105.183.203   <none>        9091/TCP   46m
+kubernetes     ClusterIP   10.96.0.1        <none>        443/TCP    57m
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl get service -n kube-system kube-dns
+NAME       TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)                  AGE
+kube-dns   ClusterIP   10.96.0.10   <none>        53/UDP,53/TCP,9153/TCP   75m
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl get service -n kube-system kube-dns
+NAME       TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)                  AGE
+kube-dns   ClusterIP   10.96.0.10   <none>        53/UDP,53/TCP,9153/TCP   6h37m
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        deleted:    5.3/probes-ingress_update.yml
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        ../Taller Practico Clase 5.docx
+        ../taller5.zip
+        5.1/deploymennt.yaml
+        5.1/probes-ingress_update.yml
+        probes-ingress.yaml
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>cd ..
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s>git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        deleted:    taller5/5.3/probes-ingress_update.yml
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Taller Practico Clase 5.docx
+        taller5.zip
+        taller5/5.1/deploymennt.yaml
+        taller5/5.1/probes-ingress_update.yml
+        taller5/probes-ingress.yaml
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s>giut add .
+"giut" no se reconoce como un comando interno o externo,
+programa o archivo por lotes ejecutable.
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s>git add .
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s>git commit -m "Agregando docs taller5"
+[main b177190] Agregando docs taller5
+ 5 files changed, 173 insertions(+)
+ create mode 100644 Taller Practico Clase 5.docx
+ create mode 100644 taller5.zip
+ create mode 100644 taller5/5.1/deploymennt.yaml
+ rename taller5/{5.3 => 5.1}/probes-ingress_update.yml (100%)
+ create mode 100644 taller5/probes-ingress.yaml
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s>git status
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s>git push
+Enumerating objects: 11, done.
+Counting objects: 100% (11/11), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (8/8), done.
+Writing objects: 100% (8/8), 129.26 KiB | 12.93 MiB/s, done.
+Total 8 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/rlrobles/lab-k8s.git
+   ca49517..b177190  main -> main
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s>kubectl version
+Client Version: version.Info{Major:"1", Minor:"21", GitVersion:"v1.21.5", GitCommit:"aea7bbadd2fc0cd689de94a54e5b7b758869d691", GitTreeState:"clean", BuildDate:"2021-09-15T21:10:45Z", GoVersion:"go1.16.8", Compiler:"gc", Platform:"windows/amd64"}
+Server Version: version.Info{Major:"1", Minor:"22", GitVersion:"v1.22.3", GitCommit:"c92036820499fedefec0f847e2054d824aea6cd1", GitTreeState:"clean", BuildDate:"2021-10-27T18:35:25Z", GoVersion:"go1.16.9", Compiler:"gc", Platform:"linux/amd64"}
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s>minikube addons enable ingress
+❗  Executing "docker container inspect minikube --format={{.State.Status}}" took an unusually long time: 5.191287s
+💡  Restarting the docker service may improve performance.
+💡  After the addon is enabled, please run "minikube tunnel" and your ingress resources would be available at "127.0.0.1"
+    ▪ Using image k8s.gcr.io/ingress-nginx/controller:v1.0.4
+    ▪ Using image k8s.gcr.io/ingress-nginx/kube-webhook-certgen:v1.1.1
+    ▪ Using image k8s.gcr.io/ingress-nginx/kube-webhook-certgen:v1.1.1
+🔎  Verifying ingress addon...
+🌟  The 'ingress' addon is enabled
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s>minikube version
+minikube version: v1.24.0
+commit: 76b94fb3c4e8ac5062daf70d60cf03ddcc0a741b
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s>ping myminikube.info
+La solicitud de ping no pudo encontrar el host myminikube.info. Compruebe el nombre y
+vuelva a intentarlo.
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s>minikube ip
+❗  Executing "docker container inspect minikube --format={{.State.Status}}" took an unusually long time: 3.1600811s
+💡  Restarting the docker service may improve performance.
+192.168.58.2
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s>kubectl run echoserver --image=gcr.io/google_containers/echoserver:1.4 --port=8080
+pod/echoserver created
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s>kubectl expose deployment echoserver --type=NodePort
+Error from server (NotFound): deployments.apps "echoserver" not found
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s>kubectl expose deployment echoserver --type=NodePort
+Error from server (NotFound): deployments.apps "echoserver" not found
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s>kubectl get deployment
+NAME           READY   UP-TO-DATE   AVAILABLE   AGE
+do100-probes   1/1     1            1           6h48m
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s>kubectl get deployment
+NAME           READY   UP-TO-DATE   AVAILABLE   AGE
+do100-probes   1/1     1            1           6h48m
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s>kubectl get deployment
+NAME           READY   UP-TO-DATE   AVAILABLE   AGE
+do100-probes   1/1     1            1           6h48m
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s>cd taller5
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl apply -f probes-ingress.yml
+error: the path "probes-ingress.yml" does not exist
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl apply -f probes-ingress.yaml
+ingress.networking.k8s.io/do100-probes created
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl get ingress/do100-probes
+NAME           CLASS   HOSTS               ADDRESS   PORTS   AGE
+do100-probes   nginx   hello.example.com             80      22s
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>curl hello.example.com/ready
+curl: (6) Could not resolve host: hello.example.com
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>curl 192.168.58.2/ready
+curl: (28) Failed to connect to 192.168.58.2 port 80 after 21031 ms: Timed out
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl get pods
+NAME                            READY   STATUS    RESTARTS   AGE
+do100-probes-7794c5cb4f-p6gqr   1/1     Running   0          6h50m
+echoserver                      1/1     Running   0          2m24s
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl get deployment
+NAME           READY   UP-TO-DATE   AVAILABLE   AGE
+do100-probes   1/1     1            1           6h50m
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>curl hello.example.com
+curl: (6) Could not resolve host: hello.example.com
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl describe ingress/do100-probes
+Name:             do100-probes
+Namespace:        default
+Address:          localhost
+Default backend:  default-http-backend:80 (<error: endpoints "default-http-backend" not found>)
+Rules:
+  Host               Path  Backends
+  ----               ----  --------
+  hello.example.com
+                     /   do100-probes:8080 (172.17.0.3:9091)
+Annotations:         <none>
+Events:
+  Type    Reason  Age                  From                      Message
+  ----    ------  ----                 ----                      -------
+  Normal  Sync    95s (x2 over 2m28s)  nginx-ingress-controller  Scheduled for sync
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl describe ingress/do100-probes
+Name:             do100-probes
+Namespace:        default
+Address:          localhost
+Default backend:  default-http-backend:80 (<error: endpoints "default-http-backend" not found>)
+Rules:
+  Host               Path  Backends
+  ----               ----  --------
+  hello.example.com
+                     /   do100-probes:8080 (172.17.0.3:9091)
+Annotations:         <none>
+Events:
+  Type    Reason  Age                   From                      Message
+  ----    ------  ----                  ----                      -------
+  Normal  Sync    111s (x2 over 2m44s)  nginx-ingress-controller  Scheduled for sync
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl expose deployment echoserver --type=NodePort
+
+Error from server (NotFound): deployments.apps "echoserver" not found
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>minikube service echoserver
+❗  Executing "docker container inspect minikube --format={{.State.Status}}" took an unusually long time: 2.9889649s
+💡  Restarting the docker service may improve performance.
+
+❌  Exiting due to SVC_NOT_FOUND: Service 'echoserver' was not found in 'default' namespace.
+You may select another namespace by using 'minikube service echoserver -n <namespace>'. Or list out all the services using 'minikube service list'
+
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>minikube service list
+❗  Executing "docker container inspect minikube --format={{.State.Status}}" took an unusually long time: 3.0518758s
+💡  Restarting the docker service may improve performance.
+|---------------|------------------------------------|--------------|---------------------------|
+|   NAMESPACE   |                NAME                | TARGET PORT  |            URL            |
+|---------------|------------------------------------|--------------|---------------------------|
+| default       | do100-probes                       | No node port |
+| default       | kubernetes                         | No node port |
+| ingress-nginx | ingress-nginx-controller           | http/80      | http://192.168.58.2:30658 |
+|               |                                    | https/443    | http://192.168.58.2:31377 |
+| ingress-nginx | ingress-nginx-controller-admission | No node port |
+| kube-system   | kube-dns                           | No node port |
+|---------------|------------------------------------|--------------|---------------------------|
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>curl http://192.168.58.2
+curl: (28) Failed to connect to 192.168.58.2 port 80 after 21049 ms: Timed out
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>curl http://192.168.58.2:9091
+curl: (28) Failed to connect to 192.168.58.2 port 9091 after 21042 ms: Timed out
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl run stilton-cheese --image=errm/cheese:stilton --port=80
+pod/stilton-cheese created
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl expose deployment stilton-cheese --type=NodePort
+Error from server (NotFound): deployments.apps "stilton-cheese" not found
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl expose deployment stilton-cheese --type=NodePort
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>minikube service stilton-cheese
+❗  Executing "docker container inspect minikube --format={{.State.Status}}" took an unusually long time: 3.136364s
+💡  Restarting the docker service may improve performance.
+
+❌  Exiting due to SVC_NOT_FOUND: Service 'stilton-cheese' was not found in 'default' namespace.
+You may select another namespace by using 'minikube service stilton-cheese -n <namespace>'. Or list out all the services using 'minikube service list'
+
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>minikube service list
+❗  Executing "docker container inspect minikube --format={{.State.Status}}" took an unusually long time: 3.0320651s
+💡  Restarting the docker service may improve performance.
+|---------------|------------------------------------|--------------|---------------------------|
+|   NAMESPACE   |                NAME                | TARGET PORT  |            URL            |
+|---------------|------------------------------------|--------------|---------------------------|
+| default       | do100-probes                       | No node port |
+| default       | kubernetes                         | No node port |
+| ingress-nginx | ingress-nginx-controller           | http/80      | http://192.168.58.2:30658 |
+|               |                                    | https/443    | http://192.168.58.2:31377 |
+| ingress-nginx | ingress-nginx-controller-admission | No node port |
+| kube-system   | kube-dns                           | No node port |
+|---------------|------------------------------------|--------------|---------------------------|
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl apply -f ingress.yaml
+error: unable to recognize "ingress.yaml": no matches for kind "Ingress" in version "extensions/v1beta1"
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl delete ingress/do100-probes
+ingress.networking.k8s.io "do100-probes" deleted
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl apply -f probes-ingress.yaml
+ingress.networking.k8s.io/do100-probes created
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl describe ingress do100-probes
+Name:             do100-probes
+Namespace:        default
+Address:          localhost
+Default backend:  default-http-backend:80 (<error: endpoints "default-http-backend" not found>)
+Rules:
+  Host               Path  Backends
+  ----               ----  --------
+  hello.example.com
+                     /   do100-probes:8080 (172.17.0.3:9091)
+Annotations:         <none>
+Events:
+  Type    Reason  Age                From                      Message
+  ----    ------  ----               ----                      -------
+  Normal  Sync    11s (x2 over 23s)  nginx-ingress-controller  Scheduled for sync
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl delete ingress/do100-probes
+ingress.networking.k8s.io "do100-probes" deleted
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl get ingress
+No resources found in default namespace.
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl apply -f probes-ingress.yaml
+ingress.networking.k8s.io/do100-probes created
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl describe ingress do100-probes
+Name:             do100-probes
+Namespace:        default
+Address:
+Default backend:  default-http-backend:80 (<error: endpoints "default-http-backend" not found>)
+Rules:
+  Host             Path  Backends
+  ----             ----  --------
+  myminikube.info
+                   /   do100-probes:8080 (172.17.0.3:9091)
+Annotations:       <none>
+Events:
+  Type    Reason  Age   From                      Message
+  ----    ------  ----  ----                      -------
+  Normal  Sync    10s   nginx-ingress-controller  Scheduled for sync
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl get ingress/do100-probes
+NAME           CLASS   HOSTS             ADDRESS     PORTS   AGE
+do100-probes   nginx   myminikube.info   localhost   80      65s
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>curl myminikube.info/ready
+curl: (6) Could not resolve host: myminikube.info
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>ping myminikube.info
+La solicitud de ping no pudo encontrar el host myminikube.info. Compruebe el nombre y
+vuelva a intentarlo.
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>ping www.myminikube.info
+La solicitud de ping no pudo encontrar el host www.myminikube.info. Compruebe el nombre y
+vuelva a intentarlo.
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>curl myminikube.info
+curl: (6) Could not resolve host: myminikube.info
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>curl cheeses.all
+curl: (6) Could not resolve host: cheeses.all
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>minikube service list
+❗  Executing "docker container inspect minikube --format={{.State.Status}}" took an unusually long time: 3.0150627s
+💡  Restarting the docker service may improve performance.
+|---------------|------------------------------------|--------------|---------------------------|
+|   NAMESPACE   |                NAME                | TARGET PORT  |            URL            |
+|---------------|------------------------------------|--------------|---------------------------|
+| default       | do100-probes                       | No node port |
+| default       | kubernetes                         | No node port |
+| ingress-nginx | ingress-nginx-controller           | http/80      | http://192.168.58.2:30658 |
+|               |                                    | https/443    | http://192.168.58.2:31377 |
+| ingress-nginx | ingress-nginx-controller-admission | No node port |
+| kube-system   | kube-dns                           | No node port |
+|---------------|------------------------------------|--------------|---------------------------|
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl expose deployment/do100-probes --port 8080
+Error from server (AlreadyExists): services "do100-probes" already exists
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl apply -f ingress.yaml
+error: unable to recognize "ingress.yaml": no matches for kind "Ingress" in version "extensions/v1beta1"
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl apply -f ingress.yaml
+error: error validating "ingress.yaml": error validating data: [ValidationError(Ingress.spec): unknown field "backend" in io.k8s.api.networking.v1.IngressSpec, ValidationError(Ingress.spec.rules[0].http.paths[0].backend): unknown field "serviceName" in io.k8s.api.networking.v1.IngressBackend, ValidationError(Ingress.spec.rules[0].http.paths[0].backend): unknown field "servicePort" in io.k8s.api.networking.v1.IngressBackend, ValidationError(Ingress.spec.rules[0].http.paths[0]): missing required field "pathType" in io.k8s.api.networking.v1.HTTPIngressPath]; if you choose to ignore these errors, turn validation off with --validate=false
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl delete ingress/do100-probes
+ingress.networking.k8s.io "do100-probes" deleted
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl apply -f probes-ingress.yaml
+ingress.networking.k8s.io/do100-probes created
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>kubectl describe ingress/do100-probes
+Name:             do100-probes
+Namespace:        default
+Address:
+Default backend:  default-http-backend:80 (<error: endpoints "default-http-backend" not found>)
+Rules:
+  Host             Path  Backends
+  ----             ----  --------
+  myminikube.info
+                   /   do100-probes:8080 (172.17.0.3:9091)
+Annotations:       <none>
+Events:
+  Type    Reason  Age   From                      Message
+  ----    ------  ----  ----                      -------
+  Normal  Sync    17s   nginx-ingress-controller  Scheduled for sync
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>curl myminikube.info/ready
+curl: (6) Could not resolve host: myminikube.info
+
+C:\Users\Royer Leandro\Documents\laboratorios_tivit\lab-k8s\taller5>

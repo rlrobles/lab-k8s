@@ -4,9 +4,11 @@ metadata:
   name: do100-probes
   labels:
     app: do100-probes
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - host: hello.example.com
+    - host: myminikube.info
       http:
         paths:
           - path: /
@@ -16,24 +18,3 @@ spec:
                 name: do100-probes
                 port:
                   number: 8080
-
-# ...output omitted...
-# spec:
-#  ...output omitted...
-#  template:
-#  ...output omitted...
-#  spec:
-#  containers:
-#  - image: quay.io/redhattraining/do100-probes:latest
-#  ...output omitted...readinessProbe:
-#  httpGet:
-#  path: /ready
-#  port: 8080
-#  initialDelaySeconds: 2
-#  timeoutSeconds: 2
-#  livenessProbe:
-#  httpGet:
-#  path: /healthz
-#  port: 8080
-#  initialDelaySeconds: 2
-#  timeoutSeconds: 2

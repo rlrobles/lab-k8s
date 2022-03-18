@@ -1,5 +1,7 @@
 {
     "yaml.schemas": {
-        "https://raw.githubusercontent.com/knative-sandbox/kn-plugin-func/main/schema/func_yaml-schema.json": "file:///c%3A/Users/Royer%20Leandro/Documents/laboratorios_tivit/lab-k8s/taller6/jobv1.yaml"
+        "https://raw.githubusercontent.com/knative-sandbox/kn-plugin-func/main/schema/func_yaml-schema.json": "file:///c%3A/Users/Royer%20Leandro/Documents/laboratorios_tivit/lab-k8s/taller6/jobv1.yaml",
+        "kubernetes://schema/v1@pod": "file:///c%3A/Users/Royer%20Leandro/Documents/laboratorios_tivit/lab-k8s/labfinalCKAD/pod1.yaml",
+        "kubernetes://schema/apps/v1@deployment": "file:///c%3A/Users/Royer%20Leandro/Documents/laboratorios_tivit/lab-k8s/labfinalCKAD/pod5.yaml"
     }
 }

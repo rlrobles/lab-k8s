@@ -1,0 +1,911 @@
+minikube@minikube:~$ minikube
+minikube provisions and manages local Kubernetes clusters optimized for development workflows.
+
+Basic Commands:
+  start          Starts a local Kubernetes cluster
+  status         Gets the status of a local Kubernetes cluster
+  stop           Stops a running local Kubernetes cluster
+  delete         Elimina un cluster de Kubernetes local
+  dashboard      Acceder al panel de Kubernetes que corre dentro del cluster minikube
+  pause          pause Kubernetes
+  unpause        unpause Kubernetes
+
+Images Commands:
+  docker-env     Configura un entorno para usar el Docker daemon de minikube
+  podman-env     Configura un entorno para usar el servicio Podman de minikube
+  cache          Agrega, elimina, o empuja una imagen local dentro de minikube, haciendo (add, delete, push) respectivamente.
+  image          Manage images
+
+Configuration and Management Commands:
+  addons         Habilita o deshabilita un complemento de minikube
+  config         Modify persistent configuration values
+  profile        Obtener o listar los perfiles actuales (clusters)
+  update-context Update kubeconfig in case of an IP or port change
+
+Networking and Connectivity Commands:
+  service        Returns a URL to connect to a service
+  tunnel         Conectar a los servicios LoadBalancer
+
+Advanced Commands:
+  mount          Mounts the specified directory into minikube
+  ssh            Log into the minikube environment (for debugging)
+  kubectl        Run a kubectl binary matching the cluster version
+  node           Usa (add, remove, list) para agregar, eliminar o listar nodos adicionales.
+  cp             Copie el fichero dentro de minikube
+
+Troubleshooting Commands:
+  ssh-key        Retrieve the ssh identity key path of the specified node
+  ssh-host       Retrieve the ssh host key of the specified node
+  ip             Retrieves the IP address of the specified node
+  logs           Returns logs to debug a local Kubernetes cluster
+  update-check   Print current and latest version number
+  version        Print the version of minikube
+  options        Show a list of global command-line options (applies to all commands).
+
+Other Commands:
+  completion     Generate command completion for a shell
+
+Use "minikube <command> --help" for more information about a given command.
+minikube@minikube:~$ minikube start
+😄  minikube v1.25.1 en Ubuntu 20.04
+🎉  minikube 1.25.2 is available! Download it: https://github.com/kubernetes/minikube/releases/tag/v1.25.2
+💡  To disable this notice, run: 'minikube config set WantUpdateNotification false'
+
+✨  Using the docker driver based on existing profile
+👍  Starting control plane node minikube in cluster minikube
+🚜  Pulling base image ...
+🔄  Restarting existing docker container for "minikube" ...
+🐳  Preparando Kubernetes v1.23.1 en Docker 20.10.12...
+    ▪ apiserver.token-auth-file=/etc/ca-certificates/token.csv
+    ▪ kubelet.housekeeping-interval=5m
+    ▪ Generando certificados y llaves
+    ▪ Iniciando plano de control
+    ▪ Configurando reglas RBAC...
+🔎  Verifying Kubernetes components...
+    ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v5
+    ▪ Using image kubernetesui/metrics-scraper:v1.0.7
+    ▪ Using image kubernetesui/dashboard:v2.3.1
+🌟  Complementos habilitados: storage-provisioner, default-storageclass, dashboard
+🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
+minikube@minikube:~$ kubectl cluster-info
+Kubernetes control plane is running at https://192.168.49.2:8443
+CoreDNS is running at https://192.168.49.2:8443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+minikube@minikube:~$ cat /etc/hosts
+127.0.0.1	localhost
+127.0.1.1	minikube
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+minikube@minikube:~$ ifconfig
+br-87b345497c53: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.49.1  netmask 255.255.255.0  broadcast 192.168.49.255
+        inet6 fe80::42:44ff:fec5:fda1  prefixlen 64  scopeid 0x20<link>
+        ether 02:42:44:c5:fd:a1  txqueuelen 0  (Ethernet)
+        RX packets 1286  bytes 248380 (248.3 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 1153  bytes 203902 (203.9 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 172.17.0.1  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:53:a1:e5:c3  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+ens33: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.79.131  netmask 255.255.255.0  broadcast 192.168.79.255
+        inet6 fe80::1e1a:723b:78b0:7f5f  prefixlen 64  scopeid 0x20<link>
+        ether 00:0c:29:c3:ab:5a  txqueuelen 1000  (Ethernet)
+        RX packets 34869  bytes 51845960 (51.8 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 2390  bytes 188708 (188.7 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Bucle local)
+        RX packets 2614  bytes 358626 (358.6 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 2614  bytes 358626 (358.6 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+vethc3cc987: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet6 fe80::f87d:c8ff:fe48:be17  prefixlen 64  scopeid 0x20<link>
+        ether fa:7d:c8:48:be:17  txqueuelen 0  (Ethernet)
+        RX packets 1286  bytes 266384 (266.3 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 1181  bytes 207341 (207.3 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+minikube@minikube:~$ kubectl get nodes
+NAME       STATUS   ROLES                  AGE     VERSION
+minikube   Ready    control-plane,master   3m37s   v1.23.1
+minikube@minikube:~$ hostname
+minikube
+minikube@minikube:~$ ifconfig
+br-87b345497c53: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.49.1  netmask 255.255.255.0  broadcast 192.168.49.255
+        inet6 fe80::42:44ff:fec5:fda1  prefixlen 64  scopeid 0x20<link>
+        ether 02:42:44:c5:fd:a1  txqueuelen 0  (Ethernet)
+        RX packets 1303  bytes 256736 (256.7 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 1173  bytes 207039 (207.0 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 172.17.0.1  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:53:a1:e5:c3  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+ens33: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.79.131  netmask 255.255.255.0  broadcast 192.168.79.255
+        inet6 fe80::1e1a:723b:78b0:7f5f  prefixlen 64  scopeid 0x20<link>
+        ether 00:0c:29:c3:ab:5a  txqueuelen 1000  (Ethernet)
+        RX packets 34881  bytes 51846680 (51.8 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 2392  bytes 188892 (188.8 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Bucle local)
+        RX packets 2615  bytes 358694 (358.6 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 2615  bytes 358694 (358.6 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+vethc3cc987: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet6 fe80::f87d:c8ff:fe48:be17  prefixlen 64  scopeid 0x20<link>
+        ether fa:7d:c8:48:be:17  txqueuelen 0  (Ethernet)
+        RX packets 1303  bytes 274978 (274.9 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 1202  bytes 210548 (210.5 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+minikube@minikube:~$ cat /etc/hosts
+127.0.0.1	localhost
+127.0.1.1	minikube
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+minikube@minikube:~$ minikube ip
+192.168.49.2
+minikube@minikube:~$ vim /etc/hosts
+
+No se ha encontrado la orden «vim», pero se puede instalar con:
+
+sudo apt install vim         # version 2:8.1.2269-1ubuntu5.7, or
+sudo apt install vim-tiny    # version 2:8.1.2269-1ubuntu5.7
+sudo apt install neovim      # version 0.4.3-3
+sudo apt install vim-athena  # version 2:8.1.2269-1ubuntu5.7
+sudo apt install vim-gtk3    # version 2:8.1.2269-1ubuntu5.7
+sudo apt install vim-nox     # version 2:8.1.2269-1ubuntu5.7
+
+minikube@minikube:~$ sudo apt-get install vim
+[sudo] contraseña para minikube: 
+Leyendo lista de paquetes... Hecho
+Creando árbol de dependencias       
+Leyendo la información de estado... Hecho
+Se instalarán los siguientes paquetes adicionales:
+  vim-runtime
+Paquetes sugeridos:
+  ctags vim-doc vim-scripts
+Se instalarán los siguientes paquetes NUEVOS:
+  vim vim-runtime
+0 actualizados, 2 nuevos se instalarán, 0 para eliminar y 12 no actualizados.
+Se necesita descargar 7.110 kB de archivos.
+Se utilizarán 34,6 MB de espacio de disco adicional después de esta operación.
+¿Desea continuar? [S/n] S
+Des:1 http://pe.archive.ubuntu.com/ubuntu focal-updates/main amd64 vim-runtime all 2:8.1.2269-1ubuntu5.7 [5.872 kB]
+Des:2 http://pe.archive.ubuntu.com/ubuntu focal-updates/main amd64 vim amd64 2:8.1.2269-1ubuntu5.7 [1.238 kB]
+Descargados 7.110 kB en 3s (2.109 kB/s)
+Seleccionando el paquete vim-runtime previamente no seleccionado.
+(Leyendo la base de datos ... 169033 ficheros o directorios instalados actualmente.)
+Preparando para desempaquetar .../vim-runtime_2%3a8.1.2269-1ubuntu5.7_all.deb ...
+Añadiendo `desviación de /usr/share/vim/vim81/doc/help.txt a /usr/share/vim/vim81/doc/help.txt.vim-tiny por vim-runtime'
+Añadiendo `desviación de /usr/share/vim/vim81/doc/tags a /usr/share/vim/vim81/doc/tags.vim-tiny por vim-runtime'
+Desempaquetando vim-runtime (2:8.1.2269-1ubuntu5.7) ...
+Seleccionando el paquete vim previamente no seleccionado.
+Preparando para desempaquetar .../vim_2%3a8.1.2269-1ubuntu5.7_amd64.deb ...
+Desempaquetando vim (2:8.1.2269-1ubuntu5.7) ...
+Configurando vim-runtime (2:8.1.2269-1ubuntu5.7) ...
+Configurando vim (2:8.1.2269-1ubuntu5.7) ...
+update-alternatives: utilizando /usr/bin/vim.basic para proveer /usr/bin/vim (vim) en modo automático
+update-alternatives: utilizando /usr/bin/vim.basic para proveer /usr/bin/vimdiff (vimdiff) en modo automático
+update-alternatives: utilizando /usr/bin/vim.basic para proveer /usr/bin/rvim (rvim) en modo automático
+update-alternatives: utilizando /usr/bin/vim.basic para proveer /usr/bin/rview (rview) en modo automático
+update-alternatives: utilizando /usr/bin/vim.basic para proveer /usr/bin/vi (vi) en modo automático
+update-alternatives: utilizando /usr/bin/vim.basic para proveer /usr/bin/view (view) en modo automático
+update-alternatives: utilizando /usr/bin/vim.basic para proveer /usr/bin/ex (ex) en modo automático
+Procesando disparadores para man-db (2.9.1-1) ...
+minikube@minikube:~$ vim /etc/hosts
+minikube@minikube:~$ vim /etc/hosts
+
+[No se ha escrito nada al disco desde el último cambio]
+/bin/bash: wq: orden no encontrada
+
+El intérprete de órdenes devolvió 127
+
+Pulse INTRO o escriba una orden para continuar
+minikube@minikube:~$ cat /etc/hosts
+127.0.0.1	localhost
+127.0.1.1	minikube
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+minikube@minikube:~$ sudo su
+root@minikube:/home/minikube# vim /etc/hosts
+root@minikube:/home/minikube# ping 
+ping: usage error: Se debe especificar la dirección de destino
+root@minikube:/home/minikube# ping hello.example.com
+PING hello.example.com (192.168.49.2) 56(84) bytes of data.
+64 bytes from hello.example.com (192.168.49.2): icmp_seq=1 ttl=64 time=0.171 ms
+64 bytes from hello.example.com (192.168.49.2): icmp_seq=2 ttl=64 time=0.060 ms
+64 bytes from hello.example.com (192.168.49.2): icmp_seq=3 ttl=64 time=0.077 ms
+64 bytes from hello.example.com (192.168.49.2): icmp_seq=4 ttl=64 time=0.078 ms
+64 bytes from hello.example.com (192.168.49.2): icmp_seq=5 ttl=64 time=0.061 ms
+64 bytes from hello.example.com (192.168.49.2): icmp_seq=6 ttl=64 time=0.094 ms
+^C
+--- hello.example.com ping statistics ---
+6 packets transmitted, 6 received, 0% packet loss, time 5098ms
+rtt min/avg/max/mdev = 0.060/0.090/0.171/0.037 ms
+root@minikube:/home/minikube# exit
+exit
+minikube@minikube:~$ cat /etc/hosts
+127.0.0.1	localhost
+127.0.1.1	minikube
+192.168.49.2 hello.example.com
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+minikube@minikube:~$ ping hello.example.comn
+ping: hello.example.comn: Nombre o servicio desconocido
+minikube@minikube:~$ ping hello.example.com
+PING hello.example.com (192.168.49.2) 56(84) bytes of data.
+64 bytes from hello.example.com (192.168.49.2): icmp_seq=1 ttl=64 time=0.155 ms
+64 bytes from hello.example.com (192.168.49.2): icmp_seq=2 ttl=64 time=0.080 ms
+64 bytes from hello.example.com (192.168.49.2): icmp_seq=3 ttl=64 time=0.106 ms
+64 bytes from hello.example.com (192.168.49.2): icmp_seq=4 ttl=64 time=0.064 ms
+^C
+--- hello.example.com ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3070ms
+rtt min/avg/max/mdev = 0.064/0.101/0.155/0.034 ms
+minikube@minikube:~$ git clone https://github.com/rlrobles/lab-k8s.git
+fatal: la ruta de destino 'lab-k8s' ya existe y no es un directorio vacío.
+minikube@minikube:~$ ls
+Descargas  Documentos  Escritorio  Imágenes  lab-k8s  Música  Plantillas  Público  Vídeos
+minikube@minikube:~$ cd lab-k8s/
+minikube@minikube:~/lab-k8s$ git pull
+remote: Enumerating objects: 155, done.
+remote: Counting objects: 100% (155/155), done.
+remote: Compressing objects: 100% (112/112), done.
+remote: Total 147 (delta 35), reused 136 (delta 24), pack-reused 0
+Recibiendo objetos: 100% (147/147), 10.47 MiB | 7.73 MiB/s, listo.
+Resolviendo deltas: 100% (35/35), completado con 3 objetos locales.
+Desde https://github.com/rlrobles/lab-k8s
+   532a7da..7b686df  main       -> origin/main
+Actualizando 532a7da..7b686df
+Fast-forward
+ .vscode/settings.json                                                                     |   5 +
+ Taller Practico Clase 5.docx                                                              | Bin 0 -> 70504 bytes
+ enlaces.yml                                                                               |  53 +++
+ lab1/draft.txt                                                                            |   2 +
+ lab3/Laboratorio 3 Kubernetes.docx                                                        | Bin 23438 -> 1027079 bytes
+ lab3/draft.txt                                                                            |  37 ++
+ lab3/lab3.1/execute.yaml                                                                  |  47 +++
+ lab3/lab3.2/execute.yaml                                                                  |  37 ++
+ lab3/lab3.3/execute.yaml                                                                  |  26 ++
+ lab3/lab3.3/result.txt                                                                    |   3 +
+ lab3/lab3.4/execute.yaml                                                                  |  31 ++
+ lab3_Royer_Robles.zip                                                                     | Bin 0 -> 1028433 bytes
+ lab4/10.yaml                                                                              |  17 +
+ lab4/14.2.yaml                                                                            |  52 +++
+ lab4/cka-example-environments-master/.gitignore                                           |   2 +
+ lab4/cka-example-environments-master/14.yaml                                              |  20 ++
+ lab4/cka-example-environments-master/9.yaml                                               |  17 +
+ lab4/cka-example-environments-master/README.md                                            |  27 ++
+ lab4/cka-example-environments-master/cluster1/Vagrantfile                                 |  62 ++++
+ lab4/cka-example-environments-master/cluster1/certs/id_rsa                                |  27 ++
+ lab4/cka-example-environments-master/cluster1/certs/id_rsa.pub                            |   1 +
+ lab4/cka-example-environments-master/cluster1/down.sh                                     |   5 +
+ lab4/cka-example-environments-master/cluster1/k8s/init.yaml                               | 281 +++++++++++++++
+ lab4/cka-example-environments-master/cluster1/k8s/resources/kustomization.yaml            |  12 +
+ lab4/cka-example-environments-master/cluster1/k8s/resources/namespaces.yaml               |   9 +
+ .../cluster1/k8s/resources/namespaces/default/fillers.yaml                                |  37 ++
+ .../cluster1/k8s/resources/namespaces/development/fillers.yaml                            |  37 ++
+ .../cluster1/k8s/resources/namespaces/development/what-a-deployment.yaml                  |  24 ++
+ .../cluster1/k8s/resources/namespaces/management/fillers.yaml                             | 121 +++++++
+ .../cluster1/k8s/resources/namespaces/management/important-pod.yaml                       |  16 +
+ .../cluster1/k8s/resources/namespaces/management/web-server.yaml                          |  17 +
+ lab4/cka-example-environments-master/cluster1/k8s/resources/priority.yaml                 |   8 +
+ lab4/cka-example-environments-master/cluster1/scripts/configure-master1.sh                |   2 +
+ lab4/cka-example-environments-master/cluster1/scripts/install-kube.sh                     |  35 ++
+ lab4/cka-example-environments-master/cluster1/scripts/install-master.sh                   |  19 +
+ lab4/cka-example-environments-master/cluster1/scripts/install-worker.sh                   |   5 +
+ .../cluster1/scripts/resources/kube-scheduler-amazing.yaml                                |  39 ++
+ lab4/cka-example-environments-master/cluster1/scripts/set-hosts.sh                        |  14 +
+ lab4/cka-example-environments-master/cluster1/scripts/update-dns.sh                       |   3 +
+ lab4/cka-example-environments-master/cluster1/tmp/.gitignore                              |   2 +
+ lab4/cka-example-environments-master/cluster1/up.sh                                       |  13 +
+ lab4/draft.txt                                                                            | 150 ++++++++
+ labfinal/1.4.yaml                                                                         |  17 +
+ labfinal/1.5.yaml                                                                         |  15 +
+ labfinal/draft.txt                                                                        | 101 ++++++
+ labfinal/kubectl.log                                                                      | 176 ++++++++++
+ labfinal/vagrant-master.log                                                               | 840 ++++++++++++++++++++++++++++++++++++++++++++
+ "minikube\357\277\276linux-amd64"                                                         |   1 +
+ taller2.zip                                                                               | Bin 0 -> 1516189 bytes
+ taller2/Taller2.docx                                                                      | Bin 249267 -> 1500119 bytes
+ taller2/commands.txt                                                                      |  10 +
+ taller2/docker.txt                                                                        | 126 +++++++
+ taller2/draft.txt                                                                         |  35 +-
+ taller2/k8s.txt                                                                           | 240 +++++++++++++
+ taller2/katacoda.txt                                                                      | 162 +++++++++
+ taller2/minikube.txt                                                                      | 457 ++++++++++++++++++++++++
+ taller3.zip                                                                               | Bin 0 -> 940875 bytes
+ taller3/ExampleVotingApp-main/db-deployment.yaml                                          |  28 ++
+ taller3/ExampleVotingApp-main/db-service.yaml                                             |  11 +
+ taller3/ExampleVotingApp-main/redis-deployment.yaml                                       |  25 ++
+ taller3/ExampleVotingApp-main/redis-service.yaml                                          |  11 +
+ taller3/ExampleVotingApp-main/result-deployment.yaml                                      |  19 +
+ taller3/ExampleVotingApp-main/result-service.yaml                                         |  13 +
+ taller3/ExampleVotingApp-main/vote-deployment.yaml                                        |  19 +
+ taller3/ExampleVotingApp-main/vote-service.yaml                                           |  13 +
+ taller3/ExampleVotingApp-main/worker-deployment.yaml                                      |  19 +
+ taller3/Taller 3 voting app.docx                                                          | Bin 0 -> 935627 bytes
+ taller3/draft.txt                                                                         |   6 +
+ taller3/katacoda.txt                                                                      | 651 ++++++++++++++++++++++++++++++++++
+ taller5.zip                                                                               | Bin 0 -> 63192 bytes
+ taller5/5.1/comandosCmd.txt                                                               | 598 +++++++++++++++++++++++++++++++
+ taller5/5.1/ingress.yaml                                                                  |  18 +
+ taller5/5.1/probes-ingress.yml                                                            |  20 ++
+ taller5/5.1/probes-ingress_update.yml                                                     |  39 ++
+ taller5/deploymennt.yaml                                                                  | 155 ++++++++
+ taller5/draft.txt                                                                         | 259 ++++++++++++++
+ taller5/draftkubectl.txt                                                                  |  74 ++++
+ taller5/probes-ingress.yaml                                                               |  18 +
+ taller6/Taller Clase  #6.docx                                                             | Bin 0 -> 497823 bytes
+ taller6/cronJob.yaml                                                                      |  19 +
+ taller6/draft.txt                                                                         |  66 ++++
+ taller6/jobv1.yaml                                                                        |  17 +
+ taller6/jobv2.yaml                                                                        |  18 +
+ taller6/jobv3.yaml                                                                        |  19 +
+ ~$ller Practico Clase 5.docx                                                              | Bin 0 -> 162 bytes
+ 85 files changed, 5628 insertions(+), 2 deletions(-)
+ create mode 100644 .vscode/settings.json
+ create mode 100644 Taller Practico Clase 5.docx
+ create mode 100644 enlaces.yml
+ create mode 100644 lab3/draft.txt
+ create mode 100644 lab3/lab3.1/execute.yaml
+ create mode 100644 lab3/lab3.2/execute.yaml
+ create mode 100644 lab3/lab3.3/execute.yaml
+ create mode 100644 lab3/lab3.3/result.txt
+ create mode 100644 lab3/lab3.4/execute.yaml
+ create mode 100644 lab3_Royer_Robles.zip
+ create mode 100644 lab4/10.yaml
+ create mode 100644 lab4/14.2.yaml
+ create mode 100644 lab4/cka-example-environments-master/.gitignore
+ create mode 100644 lab4/cka-example-environments-master/14.yaml
+ create mode 100644 lab4/cka-example-environments-master/9.yaml
+ create mode 100644 lab4/cka-example-environments-master/README.md
+ create mode 100644 lab4/cka-example-environments-master/cluster1/Vagrantfile
+ create mode 100644 lab4/cka-example-environments-master/cluster1/certs/id_rsa
+ create mode 100644 lab4/cka-example-environments-master/cluster1/certs/id_rsa.pub
+ create mode 100644 lab4/cka-example-environments-master/cluster1/down.sh
+ create mode 100644 lab4/cka-example-environments-master/cluster1/k8s/init.yaml
+ create mode 100644 lab4/cka-example-environments-master/cluster1/k8s/resources/kustomization.yaml
+ create mode 100644 lab4/cka-example-environments-master/cluster1/k8s/resources/namespaces.yaml
+ create mode 100644 lab4/cka-example-environments-master/cluster1/k8s/resources/namespaces/default/fillers.yaml
+ create mode 100644 lab4/cka-example-environments-master/cluster1/k8s/resources/namespaces/development/fillers.yaml
+ create mode 100644 lab4/cka-example-environments-master/cluster1/k8s/resources/namespaces/development/what-a-deployment.yaml
+ create mode 100644 lab4/cka-example-environments-master/cluster1/k8s/resources/namespaces/management/fillers.yaml
+ create mode 100644 lab4/cka-example-environments-master/cluster1/k8s/resources/namespaces/management/important-pod.yaml
+ create mode 100644 lab4/cka-example-environments-master/cluster1/k8s/resources/namespaces/management/web-server.yaml
+ create mode 100644 lab4/cka-example-environments-master/cluster1/k8s/resources/priority.yaml
+ create mode 100644 lab4/cka-example-environments-master/cluster1/scripts/configure-master1.sh
+ create mode 100644 lab4/cka-example-environments-master/cluster1/scripts/install-kube.sh
+ create mode 100644 lab4/cka-example-environments-master/cluster1/scripts/install-master.sh
+ create mode 100644 lab4/cka-example-environments-master/cluster1/scripts/install-worker.sh
+ create mode 100644 lab4/cka-example-environments-master/cluster1/scripts/resources/kube-scheduler-amazing.yaml
+ create mode 100644 lab4/cka-example-environments-master/cluster1/scripts/set-hosts.sh
+ create mode 100644 lab4/cka-example-environments-master/cluster1/scripts/update-dns.sh
+ create mode 100644 lab4/cka-example-environments-master/cluster1/tmp/.gitignore
+ create mode 100644 lab4/cka-example-environments-master/cluster1/up.sh
+ create mode 100644 lab4/draft.txt
+ create mode 100644 labfinal/1.4.yaml
+ create mode 100644 labfinal/1.5.yaml
+ create mode 100644 labfinal/draft.txt
+ create mode 100644 labfinal/kubectl.log
+ create mode 100644 labfinal/vagrant-master.log
+ create mode 100644 "minikube\357\277\276linux-amd64"
+ create mode 100644 taller2.zip
+ create mode 100644 taller2/commands.txt
+ create mode 100644 taller2/docker.txt
+ create mode 100644 taller2/k8s.txt
+ create mode 100644 taller2/katacoda.txt
+ create mode 100644 taller2/minikube.txt
+ create mode 100644 taller3.zip
+ create mode 100644 taller3/ExampleVotingApp-main/db-deployment.yaml
+ create mode 100644 taller3/ExampleVotingApp-main/db-service.yaml
+ create mode 100644 taller3/ExampleVotingApp-main/redis-deployment.yaml
+ create mode 100644 taller3/ExampleVotingApp-main/redis-service.yaml
+ create mode 100644 taller3/ExampleVotingApp-main/result-deployment.yaml
+ create mode 100644 taller3/ExampleVotingApp-main/result-service.yaml
+ create mode 100644 taller3/ExampleVotingApp-main/vote-deployment.yaml
+ create mode 100644 taller3/ExampleVotingApp-main/vote-service.yaml
+ create mode 100644 taller3/ExampleVotingApp-main/worker-deployment.yaml
+ create mode 100644 taller3/Taller 3 voting app.docx
+ create mode 100644 taller3/draft.txt
+ create mode 100644 taller3/katacoda.txt
+ create mode 100644 taller5.zip
+ create mode 100644 taller5/5.1/comandosCmd.txt
+ create mode 100644 taller5/5.1/ingress.yaml
+ create mode 100644 taller5/5.1/probes-ingress.yml
+ create mode 100644 taller5/5.1/probes-ingress_update.yml
+ create mode 100644 taller5/deploymennt.yaml
+ create mode 100644 taller5/draft.txt
+ create mode 100644 taller5/draftkubectl.txt
+ create mode 100644 taller5/probes-ingress.yaml
+ create mode 100644 taller6/Taller Clase  #6.docx
+ create mode 100644 taller6/cronJob.yaml
+ create mode 100644 taller6/draft.txt
+ create mode 100644 taller6/jobv1.yaml
+ create mode 100644 taller6/jobv2.yaml
+ create mode 100644 taller6/jobv3.yaml
+ create mode 100644 ~$ller Practico Clase 5.docx
+minikube@minikube:~/lab-k8s$ cd talle5
+bash: cd: talle5: No existe el archivo o el directorio
+minikube@minikube:~/lab-k8s$ cd taller5
+minikube@minikube:~/lab-k8s/taller5$ ls
+5.1  deploymennt.yaml  draftkubectl.txt  draft.txt  probes-ingress.yaml
+minikube@minikube:~/lab-k8s/taller5$ kubectl create deployment do100-probes \
+> --image quay.io/redhattraining/do100-probes:latest
+deployment.apps/do100-probes created
+minikube@minikube:~/lab-k8s/taller5$ kubectl expose deployment/do100-probes --port 8080
+service/do100-probes exposed
+minikube@minikube:~/lab-k8s/taller5$ kubectl create -f probes-ingress.yml
+error: the path "probes-ingress.yml" does not exist
+minikube@minikube:~/lab-k8s/taller5$ kubectl create -f probes-ingress.yaml 
+ingress.networking.k8s.io/do100-probes created
+minikube@minikube:~/lab-k8s/taller5$ kubectl get ingress/do100-probes
+NAME           CLASS    HOSTS               ADDRESS   PORTS   AGE
+do100-probes   <none>   hello.example.com             80      22s
+minikube@minikube:~/lab-k8s/taller5$ curl -i hello.example.com/ready
+curl: (7) Failed to connect to hello.example.com port 80: Conexión rehusada
+minikube@minikube:~/lab-k8s/taller5$ curl -i hello.example.com/ready
+HTTP/1.1 200 OK
+Date: Fri, 11 Mar 2022 05:06:17 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 30
+Connection: keep-alive
+X-Powered-By: Express
+ETag: W/"1e-pgLIGYYknQvH9BUxCvwq05qsyuU"
+
+Ready for service requests...
+minikube@minikube:~/lab-k8s/taller5$ kubectl get ingress/do100-probes
+NAME           CLASS    HOSTS               ADDRESS     PORTS   AGE
+do100-probes   <none>   hello.example.com   localhost   80      3m26s
+minikube@minikube:~/lab-k8s/taller5$ kubectl get ingress/do100-probes
+NAME           CLASS    HOSTS               ADDRESS     PORTS   AGE
+do100-probes   <none>   hello.example.com   localhost   80      3m28s
+minikube@minikube:~/lab-k8s/taller5$ curl -i hello.example.com/ready
+HTTP/1.1 200 OK
+Date: Fri, 11 Mar 2022 05:06:35 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 30
+Connection: keep-alive
+X-Powered-By: Express
+ETag: W/"1e-pgLIGYYknQvH9BUxCvwq05qsyuU"
+
+Ready for service requests...
+minikube@minikube:~/lab-k8s/taller5$ kubectl get ingress/do100-probes
+NAME           CLASS    HOSTS               ADDRESS     PORTS   AGE
+do100-probes   <none>   hello.example.com   localhost   80      4m
+minikube@minikube:~/lab-k8s/taller5$ curl -i hello.example.com/ready
+HTTP/1.1 200 OK
+Date: Fri, 11 Mar 2022 05:07:02 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 30
+Connection: keep-alive
+X-Powered-By: Express
+ETag: W/"1e-pgLIGYYknQvH9BUxCvwq05qsyuU"
+
+Ready for service requests...
+minikube@minikube:~/lab-k8s/taller5$ curl -i hello.example.com/healthz
+HTTP/1.1 200 OK
+Date: Fri, 11 Mar 2022 05:08:06 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 3
+Connection: keep-alive
+X-Powered-By: Express
+ETag: W/"3-CftlTBfMBbEe9TvTWqcB9tVQ6OE"
+
+OK
+minikube@minikube:~/lab-k8s/taller5$ curl hello.example.com
+Hello! This is the index page for the app.
+minikube@minikube:~/lab-k8s/taller5$ 
+
+
+
+=====================================
+
+minikube@minikube:~$ ifconfig
+br-87b345497c53: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.49.1  netmask 255.255.255.0  broadcast 192.168.49.255
+        inet6 fe80::42:44ff:fec5:fda1  prefixlen 64  scopeid 0x20<link>
+        ether 02:42:44:c5:fd:a1  txqueuelen 0  (Ethernet)
+        RX packets 1303  bytes 256736 (256.7 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 1173  bytes 207039 (207.0 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 172.17.0.1  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:53:a1:e5:c3  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+ens33: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.79.131  netmask 255.255.255.0  broadcast 192.168.79.255
+        inet6 fe80::1e1a:723b:78b0:7f5f  prefixlen 64  scopeid 0x20<link>
+        ether 00:0c:29:c3:ab:5a  txqueuelen 1000  (Ethernet)
+        RX packets 39876  bytes 59227875 (59.2 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 2769  bytes 212082 (212.0 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Bucle local)
+        RX packets 2621  bytes 359294 (359.2 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 2621  bytes 359294 (359.2 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+vethc3cc987: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet6 fe80::f87d:c8ff:fe48:be17  prefixlen 64  scopeid 0x20<link>
+        ether fa:7d:c8:48:be:17  txqueuelen 0  (Ethernet)
+        RX packets 1303  bytes 274978 (274.9 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 1202  bytes 210548 (210.5 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+minikube@minikube:~$ minikube ip
+192.168.49.2
+minikube@minikube:~$ minikube service list
+|----------------------|---------------------------|--------------|-----|
+|      NAMESPACE       |           NAME            | TARGET PORT  | URL |
+|----------------------|---------------------------|--------------|-----|
+| default              | do100-probes              | No node port |
+| default              | kubernetes                | No node port |
+| kube-system          | kube-dns                  | No node port |
+| kubernetes-dashboard | dashboard-metrics-scraper | No node port |
+| kubernetes-dashboard | kubernetes-dashboard      | No node port |
+|----------------------|---------------------------|--------------|-----|
+minikube@minikube:~$ minikube addons enable ingress
+    ▪ Using image k8s.gcr.io/ingress-nginx/controller:v1.1.0
+    ▪ Using image k8s.gcr.io/ingress-nginx/kube-webhook-certgen:v1.1.1
+    ▪ Using image k8s.gcr.io/ingress-nginx/kube-webhook-certgen:v1.1.1
+🔎  Verifying ingress addon...
+🌟  The 'ingress' addon is enabled
+minikube@minikube:~$ minikube service list
+|----------------------|------------------------------------|--------------|---------------------------|
+|      NAMESPACE       |                NAME                | TARGET PORT  |            URL            |
+|----------------------|------------------------------------|--------------|---------------------------|
+| default              | do100-probes                       | No node port |
+| default              | kubernetes                         | No node port |
+| ingress-nginx        | ingress-nginx-controller           | http/80      | http://192.168.49.2:31621 |
+|                      |                                    | https/443    | http://192.168.49.2:31530 |
+| ingress-nginx        | ingress-nginx-controller-admission | No node port |
+| kube-system          | kube-dns                           | No node port |
+| kubernetes-dashboard | dashboard-metrics-scraper          | No node port |
+| kubernetes-dashboard | kubernetes-dashboard               | No node port |
+|----------------------|------------------------------------|--------------|---------------------------|
+minikube@minikube:~$ 
+
+
+===================================
+
+
+minikube@minikube:~$ cd lab-k8s/taller5
+minikube@minikube:~/lab-k8s/taller5$ kubectl edit deployment/do100-probes
+Edit cancelled, no changes made.
+minikube@minikube:~/lab-k8s/taller5$ kubectl get  deployment/do100-probes -o yaml > backup.yaml
+minikube@minikube:~/lab-k8s/taller5$ ls
+5.1  backup.yaml  deploymennt.yaml  draftkubectl.txt  draft.txt  probes-ingress.yaml
+minikube@minikube:~/lab-k8s/taller5$ cat backup.yaml 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+  creationTimestamp: "2022-03-11T05:01:55Z"
+  generation: 1
+  labels:
+    app: do100-probes
+  name: do100-probes
+  namespace: default
+  resourceVersion: "1326"
+  uid: 25bfcb43-53d9-4cda-a8b1-2ea6d97e513c
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: do100-probes
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: do100-probes
+    spec:
+      containers:
+      - image: quay.io/redhattraining/do100-probes:latest
+        imagePullPolicy: Always
+        name: do100-probes
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  availableReplicas: 1
+  conditions:
+  - lastTransitionTime: "2022-03-11T05:02:47Z"
+    lastUpdateTime: "2022-03-11T05:02:47Z"
+    message: Deployment has minimum availability.
+    reason: MinimumReplicasAvailable
+    status: "True"
+    type: Available
+  - lastTransitionTime: "2022-03-11T05:01:55Z"
+    lastUpdateTime: "2022-03-11T05:02:47Z"
+    message: ReplicaSet "do100-probes-5bfd668bdc" has successfully progressed.
+    reason: NewReplicaSetAvailable
+    status: "True"
+    type: Progressing
+  observedGeneration: 1
+  readyReplicas: 1
+  replicas: 1
+  updatedReplicas: 1
+minikube@minikube:~/lab-k8s/taller5$ kubectl edit deployment/do100-probes
+deployment.apps/do100-probes edited
+minikube@minikube:~/lab-k8s/taller5$ kubectl describe deployment do100-probes
+Name:                   do100-probes
+Namespace:              default
+CreationTimestamp:      Fri, 11 Mar 2022 00:01:55 -0500
+Labels:                 app=do100-probes
+Annotations:            deployment.kubernetes.io/revision: 2
+Selector:               app=do100-probes
+Replicas:               1 desired | 1 updated | 2 total | 1 available | 1 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app=do100-probes
+  Containers:
+   do100-probes:
+    Image:        quay.io/redhattraining/do100-probes:latest
+    Port:         <none>
+    Host Port:    <none>
+    Liveness:     http-get http://:8080/healthz delay=2s timeout=2s period=10s #success=1 #failure=3
+    Readiness:    http-get http://:8080/ready delay=2s timeout=2s period=10s #success=1 #failure=3
+    Environment:  <none>
+    Mounts:       <none>
+  Volumes:        <none>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    ReplicaSetUpdated
+OldReplicaSets:  do100-probes-5bfd668bdc (1/1 replicas created)
+NewReplicaSet:   do100-probes-68d989b498 (1/1 replicas created)
+Events:
+  Type    Reason             Age   From                   Message
+  ----    ------             ----  ----                   -------
+  Normal  ScalingReplicaSet  12m   deployment-controller  Scaled up replica set do100-probes-5bfd668bdc to 1
+  Normal  ScalingReplicaSet  31s   deployment-controller  Scaled up replica set do100-probes-68d989b498 to 1
+minikube@minikube:~/lab-k8s/taller5$ kubectl get pods
+NAME                            READY   STATUS    RESTARTS   AGE
+do100-probes-68d989b498-d2q4n   1/1     Running   0          44s
+minikube@minikube:~/lab-k8s/taller5$ kubectl logs -f do100-probes-68d989b498-d2q4n
+
+> probes@1.0.0 start /opt/app-root/src
+> node app.js
+
+nodejs server running on http://0.0.0.0:8080
+ping /ready => pong [notready]
+ping /healthz => pong [healthy]
+ping /ready => pong [notready]
+ping /ready => pong [notready]
+ping /healthz => pong [healthy]
+ping /healthz => pong [healthy]
+ping /ready => pong [notready]
+ping /healthz => pong [healthy]
+ping /ready => pong [ready]
+ping /ready => pong [ready]
+ping /healthz => pong [healthy]
+ping /healthz => pong [healthy]
+ping /ready => pong [ready]
+ping /ready => pong [ready]
+ping /healthz => pong [healthy]
+ping /healthz => pong [healthy]
+ping /ready => pong [ready]
+ping /ready => pong [ready]
+ping /healthz => pong [healthy]
+ping /healthz => pong [healthy]
+ping /ready => pong [ready]
+ping /healthz => pong [healthy]
+ping /ready => pong [ready]
+ping /ready => pong [ready]
+ping /healthz => pong [healthy]
+^C
+minikube@minikube:~/lab-k8s/taller5$ 
+
+
+=================================
+
+minikube@minikube:~/lab-k8s/taller5$ curl http://hello.example.com/flip?op=kill-health
+Switched app state to unhealthy...
+minikube@minikube:~/lab-k8s/taller5$ curl http://hello.example.com/flip?op=kill-ready
+Switched app state to not ready...
+minikube@minikube:~/lab-k8s/taller5$ kubectl logs -f do100-probes-68d989b498-d2q4n
+
+> probes@1.0.0 start /opt/app-root/src
+> node app.js
+
+nodejs server running on http://0.0.0.0:8080
+ping /ready => pong [notready]
+ping /healthz => pong [healthy]
+ping /ready => pong [notready]
+ping /ready => pong [notready]
+ping /healthz => pong [healthy]
+ping /healthz => pong [healthy]
+ping /ready => pong [notready]
+ping /healthz => pong [healthy]
+ping /ready => pong [ready]
+ping /ready => pong [ready]
+ping /healthz => pong [healthy]
+ping /healthz => pong [healthy]
+ping /ready => pong [ready]
+ping /ready => pong [ready]
+ping /healthz => pong [healthy]
+ping /healthz => pong [healthy]
+ping /ready => pong [ready]
+ping /ready => pong [ready]
+ping /healthz => pong [healthy]
+ping /healthz => pong [healthy]
+ping /ready => pong [ready]
+ping /healthz => pong [healthy]
+ping /ready => pong [ready]
+ping /ready => pong [ready]
+ping /healthz => pong [healthy]
+ping /ready => pong [ready]
+ping /healthz => pong [healthy]
+ping /ready => pong [ready]
+ping /healthz => pong [healthy]
+ping /healthz => pong [healthy]
+ping /ready => pong [ready]
+ping /ready => pong [ready]
+ping /healthz => pong [healthy]
+ping /healthz => pong [healthy]
+ping /ready => pong [ready]
+ping /ready => pong [ready]
+ping /healthz => pong [healthy]
+ping /ready => pong [ready]
+ping /healthz => pong [healthy]
+ping /healthz => pong [healthy]
+ping /ready => pong [ready]
+ping /ready => pong [ready]
+ping /healthz => pong [healthy]
+ping /healthz => pong [healthy]
+ping /ready => pong [ready]
+ping /ready => pong [ready]
+ping /healthz => pong [healthy]
+ping /ready => pong [ready]
+ping /healthz => pong [healthy]
+ping /healthz => pong [healthy]
+ping /ready => pong [ready]
+ping /healthz => pong [healthy]
+ping /ready => pong [ready]
+Received kill request for health probe.
+ping /healthz => pong [unhealthy]
+ping /ready => pong [ready]
+Received kill request for readiness probe.
+ping /healthz => pong [unhealthy]
+ping /ready => pong [notready]
+ping /ready => pong [notready]
+ping /healthz => pong [unhealthy]
+minikube@minikube:~/lab-k8s/taller5$ kubectl get pods
+NAME                            READY   STATUS    RESTARTS      AGE
+do100-probes-68d989b498-d2q4n   0/1     Running   1 (23s ago)   5m14s
+minikube@minikube:~/lab-k8s/taller5$ kubectl get pods
+NAME                            READY   STATUS    RESTARTS      AGE
+do100-probes-68d989b498-d2q4n   0/1     Running   1 (34s ago)   5m25s
+minikube@minikube:~/lab-k8s/taller5$ kubectl get pods
+NAME                            READY   STATUS    RESTARTS      AGE
+do100-probes-68d989b498-d2q4n   0/1     Running   1 (35s ago)   5m26s
+minikube@minikube:~/lab-k8s/taller5$ kubectl get pods
+NAME                            READY   STATUS    RESTARTS      AGE
+do100-probes-68d989b498-d2q4n   0/1     Running   1 (36s ago)   5m27s
+minikube@minikube:~/lab-k8s/taller5$ kubectl get pods
+NAME                            READY   STATUS    RESTARTS      AGE
+do100-probes-68d989b498-d2q4n   0/1     Running   1 (37s ago)   5m28s
+minikube@minikube:~/lab-k8s/taller5$ kubectl get pods
+NAME                            READY   STATUS    RESTARTS      AGE
+do100-probes-68d989b498-d2q4n   0/1     Running   1 (37s ago)   5m28s
+minikube@minikube:~/lab-k8s/taller5$ kubectl get pods
+NAME                            READY   STATUS    RESTARTS      AGE
+do100-probes-68d989b498-d2q4n   0/1     Running   1 (38s ago)   5m29s
+minikube@minikube:~/lab-k8s/taller5$ kubectl get pods
+NAME                            READY   STATUS    RESTARTS      AGE
+do100-probes-68d989b498-d2q4n   1/1     Running   1 (42s ago)   5m33s
+minikube@minikube:~/lab-k8s/taller5$ kubectl get pods
+NAME                            READY   STATUS    RESTARTS      AGE
+do100-probes-68d989b498-d2q4n   1/1     Running   1 (44s ago)   5m35s
+minikube@minikube:~/lab-k8s/taller5$ kubectl logs -f do100-probes-68d989b498-d2q4n
+
+> probes@1.0.0 start /opt/app-root/src
+> node app.js
+
+nodejs server running on http://0.0.0.0:8080
+ping /ready => pong [notready]
+ping /ready => pong [notready]
+ping /healthz => pong [healthy]
+ping /ready => pong [notready]
+ping /healthz => pong [healthy]
+ping /ready => pong [notready]
+ping /healthz => pong [healthy]
+ping /ready => pong [ready]
+ping /healthz => pong [healthy]
+ping /ready => pong [ready]
+ping /healthz => pong [healthy]
+ping /ready => pong [ready]
+ping /healthz => pong [healthy]
+^C
+minikube@minikube:~/lab-k8s/taller5$ 
+
+================================================================
+
+minikube@minikube:~/lab-k8s/taller5$ kubectl delete deployment do100-probes
+deployment.apps "do100-probes" deleted
+minikube@minikube:~/lab-k8s/taller5$ kubectl delete service do100-probes
+service "do100-probes" deleted
+minikube@minikube:~/lab-k8s/taller5$ kubectl delete ingress do100-probes
+ingress.networking.k8s.io "do100-probes" deleted
+minikube@minikube:~/lab-k8s/taller5$ 

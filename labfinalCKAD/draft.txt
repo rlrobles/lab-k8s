@@ -1,0 +1,213 @@
+Laboratorio Final
+
+
+1. Cree un pod de imagen bash que se ejecute una vez 
+para ejecutar el comando
+hostname > /tmp/hostname && sleep 1d.
+*********************************
+kubectl run pod1 --image=bash -- bash -c "hostname >> /tmp/hostname && sleep 1d"
+
+#--o yaml --dry-run=client > pod2.yaml
+*********************************
+
+
+2.Exportar y editar el YAML para añadir un label my-label: test
+*********************************
+kubectl get pod pod1 -o yaml > pod1.yaml
+kubectl replace -f pod1.yaml --force
+kubectl get pod -l my-label
+kubectl get pod pods
+
+kubectl delete pod  pod1
+*********************************
+
+3.Cree un pod desde el archivo YAML.
+*********************************
+kubectl apply -f pod1.yaml
+*********************************
+
+4.Conéctese vía SSH al pod, asegúrese de que su nombre
+de host esté escrito en el archivo
+/tmp/hostname
+*********************************
+kubectl exec -it pod1 -- sh
+cat /tmp/hostname
+
+kubectl exec -it pod1 -- cat /tmp/hostname
+*********************************
+
+5.Cree un deployment de 15 pods con la imagen nginx:1.14.2 
+en el namespace “uno” (también cree ese namespace).
+
+*********************************
+kubectl create ns uno
+kubectl apply -f deployment5.yaml
+*********************************
+
+
+6.Confirme que se estén ejecutando todos los pods.
+*********************************
+kubectl get pods 
+*********************************
+
+
+7.Edite el deployment para cambiar la imagen de 
+todos los pods a: nginx:1.15.10.
+*********************************
+kubectl edit deployment nginx-deployment 
+*********************************
+
+
+
+8.Confirme que todos los pods ahora se ejecutan 
+con la imagen nginx:1.15.10.
+*********************************
+kubectl get deployment nginx-deployment -o wide
+kubectl get pods
+*********************************
+
+
+9.Edite el deployment para cambiar la imagen 
+de todos los pods a: nginx:1.15.7777.
+*********************************
+kubectl edit deployment nginx-deployment 
+*********************************
+
+
+10.Confirme que todos los pod ejecutan la imagen 
+nginx:1.15.7777 y no tienen errores. Evidencie los errores si hay.
+*********************************
+kubectl get pods 
+*********************************
+
+
+11.Revierta el cambio, para que todos los pods 
+ejecuten la versión nginx:1.15.10 nuevamente.
+
+*********************************
+kubectl rollout history deployment.v1.apps/nginx-deployment
+kubectl rollout history deployment.v1.apps/nginx-deployment --revision=2
+kubectl rollout undo deployment.v1.apps/nginx-deployment                    #version con 1.15.10 
+kubectl get pods
+kubectl get deployment nginx-deployment -o wide
+*********************************
+
+
+12.Confirme que todos los pods ahora se ejecutan 
+con la imagen nginx:1.15.10
+*********************************
+kubectl get deployment nginx-deployment -o wide
+*********************************
+
+
+13.Cree otro deployment con la imagen de ngnix 
+con 4 replicas y verifique los eventos.
+*********************************
+
+kubectl create deploy nginx --image nginx
+kubectl scale deploy nginx --replicas 4
+kubectl get events --sort-by='{.lastTimestamp}'
+
+*********************************
+
+
+14.Cree manualmente un solo pod de la imagen
+ngnix e intente pasarlo a la custodia del deployment 
+existente (sin cambiar la configuración del deployment).
+*********************************
+kubectl get pod,rs --show-labels
+
+1.
+kubectl run nginx --image=nginx --labels="app=nginx,pod-template-hash=6799fc88d8"
+kubectl get pods
+
+
+Opcion 2.
+kubectl run nginx --image=nginx
+kubectl get pods                                        # there it is!
+kubectl label pods nginx pod-template-hash=6799fc88d8
+kubectl label pods nginx app=nginx
+kubectl get pods                                        # and it's gone
+*********************************
+
+
+kubectl get pod --show-labels
+kubectl get rs --show-labels
+kubectl get pod,rs --show-labels
+kubectl describe pod nginx-6799fc88d8-gl2d9    #| grep -A5 -i labels
+kubectl describe rs nginx-6799fc88d8           #| grep -A5 -i labels
+kubectl get pods
+
+
+15.¿Cuantos pods hay corriendo ahora de esa imagen? 
+Verifique los eventos generados y explique lo que sucedió.
+*********************************
+kubectl get pods
+kubectl get events --sort-by='{.lastTimestamp}'
+*********************************
+
+16.Cree el archivo pass.txt con la siguiente información:
+CREDENCIAL_1=-DSJG”$LPGE[GJJ6C;
+CREDENCIAL_2=OIUJNKRE#$FHJ/&%G
+CREDENCIAL_3=ZVBJK)(/%#HJJGFDVD.
+CREDENCIAL_4=OIY*Y¡?[FGGDREVCDRY$&/
+CREDENCIAL_5=C_2\a{]XD}1#9BpE[k?
+CREDENCIAL_6=9*KD8_w<);ozb:ns;JC
+CREDENCIAL_7=C[V$Eb5yQ)c~!..{LRT
+SETTING_USE_SEC=true
+SETTING_ALLOW_ANON=true
+SETTING_PREVENT_ADMIN_LOGIN=true
+
+
+
+kubectl create secret generic pass --from-file=./pass.txt
+
+17.Cree un secret que contenga las variables de 
+entorno del archivo pass.txt
+*********************************
+kubectl create secret generic pass --from-env-file=./pass.txt
+kubectl get secrets pass -o yaml
+*********************************
+
+
+18.Cree otro pod con imagen de nginx que haga que 
+todas las entradas del archivo pass.txt estén disponibles
+ como variables de entorno. (Por ejemplo, que sea usable 
+ por echo $CREDENCIAL_1, etc.).
+*********************************
+kubectl apply -f pod18.yaml
+kubectl get pods
+kubectl describe pod pod18
+*********************************
+
+
+19.Cree el siguiente pod: 
+apiVersion: v1 kind: Pod metadata: name: pod-calc spec: containers:
+-command:
+-sh
+--c
+-echo "important calculation"; sleep 1d
+image: nginx
+name: pod-calc
+y luego cree un Replicaset para el pod anterior con 2 replicas siempre aseguradas.
+
+
+*********************************
+kubectl apply -f pod19.yaml
+kubectl get pods pod-calc
+kubectl apply -f replicaSet19.yaml
+kubectl describe rs calc-rs
+kubectl get pods
+kubectl get rs
+*********************************
+
+
+
+
+20.Asegúrese de que el ReplicaSet solo 
+cree un nuevo pod y use el existente que 
+ya se está ejecutando como el segundo. SIN TIEMPO DE INACTIVIDAD.
+
+*********************************
+kubectl get pod,rs --show-labels
+*********************************

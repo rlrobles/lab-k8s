@@ -1,0 +1,80 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod18
+spec:
+  containers:
+  - name: pod18
+    image: nginx
+    env:
+      - name: CREDENCIAL_1
+        valueFrom:
+          secretKeyRef:
+            name: pass
+            key: CREDENCIAL_1
+            optional: false # same as default; "mysecret" must exist
+                            # and include a key named "username"
+      - name: CREDENCIAL_2
+        valueFrom:
+          secretKeyRef:
+            name: pass
+            key: CREDENCIAL_2
+            optional: false # same as default; "mysecret" must exist
+                            # and include a key named "password"
+      - name: CREDENCIAL_3
+        valueFrom:
+          secretKeyRef:
+            name: pass
+            key: CREDENCIAL_3
+            optional: false # same as default; "mysecret" must exist
+                            # and include a key named "password"
+      - name: CREDENCIAL_4
+        valueFrom:
+          secretKeyRef:
+            name: pass
+            key: CREDENCIAL_4
+            optional: false # same as default; "mysecret" must exist
+                            # and include a key named "password"
+      - name: CREDENCIAL_5
+        valueFrom:
+          secretKeyRef:
+            name: pass
+            key: CREDENCIAL_5
+            optional: false # same as default; "mysecret" must exist
+                            # and include a key named "password"
+      - name: CREDENCIAL_6
+        valueFrom:
+          secretKeyRef:
+            name: pass
+            key: CREDENCIAL_6
+            optional: false # same as default; "mysecret" must exist
+                            # and include a key named "password"
+      - name: CREDENCIAL_7
+        valueFrom:
+          secretKeyRef:
+            name: pass
+            key: CREDENCIAL_7
+            optional: false # same as default; "mysecret" must exist
+                            # and include a key named "password"
+      - name: SETTING_USE_SEC
+        valueFrom:
+          secretKeyRef:
+            name: pass
+            key: SETTING_USE_SEC
+            optional: false # same as default; "mysecret" must exist
+                            # and include a key named "password"
+      - name: SETTING_ALLOW_ANON
+        valueFrom:
+          secretKeyRef:
+            name: pass
+            key: SETTING_ALLOW_ANON
+            optional: false # same as default; "mysecret" must exist
+                            # and include a key named "password"
+      - name: SETTING_PREVENT_ADMIN_LOGIN
+        valueFrom:
+          secretKeyRef:
+            name: pass
+            key: SETTING_PREVENT_ADMIN_LOGIN
+            optional: false # same as default; "mysecret" must exist
+                            # and include a key named "password"
+  restartPolicy: Never

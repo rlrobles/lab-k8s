@@ -8,6 +8,22 @@ https://levelup.gitconnected.com/kubernetes-cka-example-questions-practical-chal
 
 
 
+https://faun.pub/kubernetes-ckad-weekly-challenge-1-creating-pods-a9510aab8978
+https://kubernetes.io/docs/tutorials/kubernetes-basics/deploy-app/deploy-interactive/
+https://jamesdefabia.github.io/docs/user-guide/kubectl/kubectl_run/
+https://cloud.google.com/migrate/anthos/docs/troubleshooting/executing-shell-commands
+https://www.containiq.com/post/using-kubectl-exec-shell-commands-examples
+https://stackoverflow.com/questions/51247619/execute-bash-command-in-pod-with-kubectl
+https://kubernetes.io/blog/2019/01/14/apiserver-dry-run-and-kubectl-diff/
+https://linuxhint.com/kubectl-dry-run/
+https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kubectl/
+https://kubernetes.io/es/docs/concepts/workloads/controllers/replicaset/
+https://www.magalix.com/blog/kubernetes-replicaset-101
+https://www.macstadium.com/blog/how-to-k8s-pods-replicasets-and-deployments
+https://www.howtoforge.com/kubernetes-replicaset/
+https://kubernetes.io/es/docs/concepts/workloads/controllers/replicaset/
+
+
 curl -O https://releases.hashicorp.com/vagrant/2.2.9/vagrant_2.2.9_x86_64.deb
 sudo apt install ./vagrant_2.2.9_x86_64.deb
 vagrant --version
@@ -52,6 +68,15 @@ kubectl get node
 
 vagrant up
 vagrant ssh
+
+
+
+========================================
+
+git clone https://github.com/wuestkamp/cka-example-environments.git
+cd cka-example-environments/cluster1
+./up.sh
+
 
 
 

@@ -19,10 +19,18 @@ Investigate Multi container Pod issue
 1.Get the amount of nodes plus their status and 
 all available kubectl contexts.
 kubectl get nodes
+kubect config get-contexts
+
+
+2. kubectl get pods --all-namespaces
+
+
 
 2.In namespace management there is a pod named web-server, check its status.
 kubectl get pods -n management
-kubectl get pod web-server
+kubectl -n management get pod web-server
+
+
 
 3.Find the reason / error in the pod logs.
 kubect get logs web-server
@@ -36,6 +44,10 @@ kubectl get logs web-server
 Scheduler Playground
 6.How many pods and services are in namespace management? 
 Create a command that uses jsonpath to output the number.
+
+kubectl get pod,svc 
+kubectl -n management get pod,svc -o=jsonpath='{range .items[*]}{.metadata.name}{"\n"}' | wc -l
+
 
 service_ip=$(kubectl get service web -o jsonpath='{.spec.clusterIP}')
 node=$(kubectl get pods --field-selector metadata.name=mysql-2 -o=jsonpath='{.items[0].spec.nodeName}')
@@ -66,10 +78,13 @@ kubectl get svc -n management
 7.How many schedulers are running? Find the parameters each is started with.
 kubectl get pods --all-namespaces | grep scheduler
 
+
+
 8.There is an existing deployment named what-a-deployment in namespace development . 
 With which scheduler are the pods of that deployment scheduled?
 
-kubectl get deployment what-a-deployment -n management
+kubectl get deployment what-a-deployment -n development
+kubectl get deployment what-a-deployment -n development -o yaml | grep scheduler
 
 
 9.Create a pod of image nginx:1.16.1-alpine in 
@@ -92,6 +107,8 @@ kubectl apply -f pod2.yaml
 Advanced Scheduling
 11.How many pods of deployment coredns are running on which nodes.
 
+kubectl get pod --all-namespaces | grep coredns
+
 kubectl get nodes
 kubectl get deployment 
 
@@ -102,6 +119,8 @@ Replicate Set / StateFull Set
 The actual Corefile not the k8s yaml.
 kubectl describe coredns -o yaml
 kubectl get service kube-dns -n kube-system
+
+kubectl -n kube-system get cm
 
 kubectl exec -i -t dnsutils -- nslookup kubernetes.default
 kubectl exec -ti dnsutils -- cat /etc/resolv.conf
@@ -114,6 +133,10 @@ httpd:2.4.41-alpine with 3 replicas
 which can run on all nodes. 
 How many are running on each node?
 
+kubectl create deployment httpd --image=httpd:2.4.41-alpine --dry-run=client -o yaml > 14.yaml
+kubectl scale deployment/httpd --replicas=3
+kubectl apply -f 14.yaml
+
 kubectl apply -f deployment.yaml
 kubectl get pods -l 
 
@@ -122,7 +145,11 @@ kubectl drain $NODE_WORKER
 
 Node Management
 11.Drain the node cluster1-worker1. Save single pods manually to restore afterwards.
-kubectl drain $NODE_WORKER
+
+kubectl drain cluster1-worker1
+kubectl -n kube-system get pod kube-proxy-ffz64 -o yaml > kube-proxy-ffz64.yaml
+kubectl -n kube-system get pod weave-net-zg9b5 -o yaml > weave-net-zg9b5.yaml
+kubectl drain cluster1-worker1 --ignore-daemonsets --force
 
 12.Remove the node cluster1-worker1 temporarily from the cluster.
 kubectl uncordon $NODE_WORKER
@@ -134,6 +161,13 @@ kubeadm cordon $NODE_WORKER
 14.Create a pod of image httpd:2.4.41-alpine 
 and confirm its scheduled on cluster1-worker1.
 kubectl apply -f pod.yaml
+
+kubectl -n development run nginx9 --image=nginx:1.16.1-alpine
+kubectl get pod httpd2 -o wide
+
+
+kubectl create pod nginx --image=nginx:1.16.1-alpine --dry-run=client -o yaml > nginx.yaml
+
 
 15.Expose the pod via a NodePort service and connect to 
 it using curl. You should be able to connect 
